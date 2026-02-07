@@ -24,9 +24,11 @@ import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import BusinessIcon from '@mui/icons-material/Business';
 import SendIcon from '@mui/icons-material/Send';
+import DonateModal from '../components/DonateModal';
 
 const GetInvolved = () => {
   const [activeTab, setActiveTab] = useState('volunteer');
+  const [donateModalOpen, setDonateModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -425,15 +427,15 @@ const GetInvolved = () => {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        color="secondary"
-                        size="large"
-                        endIcon={<SendIcon />}
-                      >
-                        Proceed to Payment
-                      </Button>
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            size="large"
+                            endIcon={<SendIcon />}
+                            onClick={() => setDonateModalOpen(true)}
+                          >
+                            Proceed to Payment
+                          </Button>
                     </Grid>
                   </Grid>
                 </form>
@@ -527,6 +529,7 @@ const GetInvolved = () => {
           </>
         )}
       </Container>
+      <DonateModal open={donateModalOpen} onClose={() => setDonateModalOpen(false)} />
     </>
   );
 };

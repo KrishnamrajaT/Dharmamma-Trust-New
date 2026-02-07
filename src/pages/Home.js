@@ -37,12 +37,7 @@ const Home = () => {
       description: 'We organize religious and community events that bring people together and foster spiritual growth and cultural values.',
       link: '/events',
     },
-    {
-      icon: <VolunteerActivismIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
-      title: 'Community Service',
-      description: 'Various social initiatives aimed at improving the quality of life and well-being of people in the community.',
-      link: '/get-involved',
-    },
+    
   ];
 
   return (
@@ -66,7 +61,7 @@ const Home = () => {
           mb: 8,
         }}
       >
-        <Container maxWidth="lg">
+          <Container maxWidth="md">
           <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3.5rem' }, fontWeight: 700, mb: 3, color:"white" }}>
             Welcome to Dharmamma Trust
           </Typography>
@@ -130,10 +125,10 @@ const Home = () => {
           <Typography variant="h2" sx={{ textAlign: 'center', mb: 6 }}>
             Our Key Services & Initiatives
           </Typography>
-          <Grid container spacing={4}>
+                    <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
             {services.map((service, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: 240, maxWidth: 320, width: '100%' }}>
                   <CardContent>
                     <Box sx={{ textAlign: 'center', mb: 2 }}>
                       {service.icon}
@@ -163,42 +158,45 @@ const Home = () => {
       </Box>
 
       {/* Impact Numbers */}
-      <Container maxWidth="lg" sx={{ mb: 8 }}>
+        <Container maxWidth="md" sx={{ mb: 8 }}>
         <Typography variant="h2" sx={{ textAlign: 'center', mb: 6 }}>
           Our Impact
         </Typography>
-        <Grid container spacing={4} sx={{ textAlign: 'center' }}>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
-              5000+
-            </Typography>
-            <Typography variant="body1">
-              Children Supported
-            </Typography>
+                <Grid container spacing={4} sx={{ textAlign: 'center', justifyContent: 'center' }}>
+          <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ minWidth: 160 }}>
+              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+                5000+
+              </Typography>
+              <Typography variant="body1">Children Supported</Typography>
+            </Box>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
-              150+
-            </Typography>
-            <Typography variant="body1">
-              Events Organized
-            </Typography>
+
+          <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ minWidth: 160 }}>
+              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+                150+
+              </Typography>
+              <Typography variant="body1">Events Organized</Typography>
+            </Box>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
-              10000+
-            </Typography>
-            <Typography variant="body1">
-              Pilgrims Served
-            </Typography>
+
+          <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ minWidth: 160 }}>
+              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+                10000+
+              </Typography>
+              <Typography variant="body1">Pilgrims Served</Typography>
+            </Box>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
-              500+
-            </Typography>
-            <Typography variant="body1">
-              Active Volunteers
-            </Typography>
+
+          <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ minWidth: 160 }}>
+              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+                500+
+              </Typography>
+              <Typography variant="body1">Active Volunteers</Typography>
+            </Box>
           </Grid>
         </Grid>
       </Container>

@@ -165,7 +165,7 @@ const Services = () => {
         </Grid>
 
         {/* How to Access */}
-        <Box sx={{ background: '#F5F5F5', p: 4, borderRadius: 2, mb: 8 }}>
+        {/* <Box sx={{ background: '#F5F5F5', p: 4, borderRadius: 2, mb: 8 }}>
           <Typography variant="h3" sx={{ mb: 3 }}>
             How to Access Our Services
           </Typography>
@@ -211,10 +211,10 @@ const Services = () => {
               </Box>
             </Grid>
           </Grid>
-        </Box>
+        </Box> */}
 
         {/* FAQs */}
-        <Box sx={{ mb: 8 }}>
+        {/* <Box sx={{ mb: 8 }}>
           <Typography variant="h2" sx={{ mb: 4 }}>
             Frequently Asked Questions
           </Typography>
@@ -232,7 +232,7 @@ const Services = () => {
               </AccordionDetails>
             </Accordion>
           ))}
-        </Box>
+        </Box> */}
       </Container>
     </>
   );

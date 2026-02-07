@@ -38,7 +38,7 @@ const Events = () => {
       time: '6:00 PM - 10:00 PM',
       location: 'Community Center, Main Street',
       category: 'Festival',
-      description: 'Join us for a grand Diwali celebration with traditional performances, decorations, and special meals.',
+      // description: 'Join us for a grand Diwali celebration with traditional performances, decorations, and special meals.',
       attendees: '2000+',
       image: '🪔',
     },
@@ -49,7 +49,7 @@ const Events = () => {
       time: '9:00 AM - 2:00 PM',
       location: 'Government School, East Ward',
       category: 'Community Service',
-      description: 'Distribution of school uniforms to 500 underprivileged students. Registration required.',
+      // description: 'Distribution of school uniforms to 500 underprivileged students. Registration required.',
       attendees: '500+',
       image: '👕',
     },
@@ -60,21 +60,11 @@ const Events = () => {
       time: '8:00 AM - 5:00 PM',
       location: 'Community Hall, West End',
       category: 'Health & Wellness',
-      description: 'Free health check-ups, consultation, and awareness sessions with experienced doctors.',
+      // description: 'Free health check-ups, consultation, and awareness sessions with experienced doctors.',
       attendees: '300+',
       image: '⚕️',
     },
-    {
-      id: 4,
-      title: 'Annual Charity Gala',
-      date: 'December 5, 2024',
-      time: '7:00 PM - 10:30 PM',
-      location: 'Grand Ballroom Hotel',
-      category: 'Fundraiser',
-      description: 'An elegant evening featuring cultural performances, dinner, and fundraising for our initiatives.',
-      attendees: '500+',
-      image: '🎭',
-    },
+    
   ];
 
   const pastEvents = [
@@ -109,6 +99,24 @@ const Events = () => {
       ],
     },
     {
+      title: 'Summer Health Camp 2024',
+      date: 'June 15, 2024',
+      location: 'East Wing Community Center',
+      attendees: '400+',
+      photos: 6,
+      testimonials: [
+        'Great medical expertise and care. - Dr. Anil Kumar'
+      ],
+    },  {
+      title: 'Summer Health Camp 2024',
+      date: 'June 15, 2024',
+      location: 'East Wing Community Center',
+      attendees: '400+',
+      photos: 6,
+      testimonials: [
+        'Great medical expertise and care. - Dr. Anil Kumar'
+      ],
+    },  {
       title: 'Summer Health Camp 2024',
       date: 'June 15, 2024',
       location: 'East Wing Community Center',
@@ -177,7 +185,7 @@ const Events = () => {
             <Grid container spacing={4}>
               {upcomingEvents.map((event) => (
                 <Grid item xs={12} md={6} key={event.id}>
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: 280 }}>
                     <CardContent>
                       <Box sx={{ mb: 2 }}>
                         <Chip
@@ -232,7 +240,7 @@ const Events = () => {
             <Grid container spacing={4}>
               {pastEvents.map((event, index) => (
                 <Grid item xs={12} md={6} key={index}>
-                  <Card>
+                  <Card sx={{ minWidth: 280 }}>
                     <CardContent>
                       <Typography variant="h5" sx={{ color: '#2E5090', mb: 1 }}>
                         {event.title}

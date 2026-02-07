@@ -291,7 +291,7 @@ const Contact = () => {
         </Box>
 
         {/* Additional Offices */}
-        <Box sx={{ mt: 8, mb: 8 }}>
+        {/* <Box sx={{ mt: 8, mb: 8 }}>
           <Typography variant="h3" sx={{ mb: 4 }}>
             Branch Offices
           </Typography>
@@ -339,7 +339,7 @@ const Contact = () => {
               </Card>
             </Grid>
           </Grid>
-        </Box>
+        </Box> */}
       </Container>
 
       {/* Map Dialog */}

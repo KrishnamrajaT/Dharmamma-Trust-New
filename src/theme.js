@@ -37,6 +37,7 @@ const theme = createTheme({
       fontWeight: 600,
       marginBottom: '1rem',
       color: '#2E5090',
+      textAlign: 'center',
     },
     h3: {
       fontSize: '1.5rem',
@@ -71,6 +72,7 @@ const theme = createTheme({
           borderRadius: '12px',
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          minWidth: 240,
           '&:hover': {
             transform: 'translateY(-4px)',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',

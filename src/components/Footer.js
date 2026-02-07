@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Container, Grid, Typography, Link, Divider } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Container, Grid, Typography, Link, Divider, Button } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,9 +7,11 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import DonateModal from './DonateModal';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [donateOpen, setDonateOpen] = useState(false);
 
   return (
     <Box
@@ -40,16 +42,16 @@ const Footer = () => {
               Quick Links
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link href="/" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s' }}>
+              <Link href="/" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
                 Home
               </Link>
-              <Link href="/about" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s' }}>
+              <Link href="/about" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
                 About Us
               </Link>
-              <Link href="/services" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s' }}>
+              <Link href="/services" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
                 Services
               </Link>
-              <Link href="/events" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s' }}>
+              <Link href="/events" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
                 Events
               </Link>
             </Box>
@@ -98,12 +100,18 @@ const Footer = () => {
           </Grid>
         </Grid>
 
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+          <Button variant="contained" color="secondary" onClick={() => setDonateOpen(true)} sx={{ fontWeight: 700 }}>Donate</Button>
+        </Box>
+
         <Divider sx={{ bg: 'rgba(255,255,255,0.1)', my: 3 }} />
+
+        <DonateModal open={donateOpen} onClose={() => setDonateOpen(false)} />
 
         {/* Copyright */}
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
-            © {currentYear} Dharmamma Trust. All rights reserved. | 
+            © {currentYear} Dharmamma Trust. All rights reserved. |
             <Link href="/privacy" color="inherit" sx={{ ml: 1, '&:hover': { color: '#FF9800' } }}>
               Privacy Policy
             </Link>

@@ -104,7 +104,7 @@ const GetInvolved = () => {
             </Card>
           </Grid> */}
           <Grid item xs={12} md={4} sx={{ minWidth: { xs: "340px", md: "313px" } }}>
-            <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => setActiveTab('donate')}>
+            <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => { setActiveTab('donate'); setDonateModalOpen(true); }}>
               <CardContent>
                 <MonetizationOnIcon sx={{ fontSize: 64, color: '#FF9800', mb: 2 }} />
                 <Typography variant="h5" sx={{ mb: 1 }}>Donate</Typography>
@@ -126,117 +126,7 @@ const GetInvolved = () => {
             </Card>
           </Grid>
         </Grid>
-        
-        {/* Donation Section */}
-        {activeTab === 'donate' && (
-          <>
-            <Typography variant="h2" sx={{ mb: 6 }}>
-              Support Us Through Donations
-            </Typography>
-            <Card sx={{ mb: 8 }}>
-              <CardContent>
-                <Typography variant="h3" sx={{ mb: 4 }}>
-                  Make a Donation
-                </Typography>
-                {submitted && <Alert severity="success" sx={{ mb: 3 }}>Thank you for your generosity!</Alert>}
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Full Name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Email Address"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <FormControl fullWidth>
-                        <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
-                          Donation Type
-                        </Typography>
-                        <RadioGroup
-                          row
-                          name="donationType"
-                          value={formData.donationType}
-                          onChange={handleInputChange}
-                        >
-                          <FormControlLabel value="onetime" control={<Radio />} label="One-time" />
-                          <FormControlLabel value="monthly" control={<Radio />} label="Monthly" />
-                          <FormControlLabel value="quarterly" control={<Radio />} label="Quarterly" />
-                        </RadioGroup>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Typography variant="subtitle2" sx={{ mb: 2, fontWeight: 600 }}>
-                        Donation Amount
-                      </Typography>
-                      <Grid container spacing={2}>
-                        {[100, 500, 1000, 5000].map(amount => (
-                          <Grid item xs={6} sm={3} key={amount}>
-                            <Button
-                              fullWidth
-                              variant={formData.donationAmount === amount.toString() ? 'contained' : 'outlined'}
-                              color="primary"
-                              onClick={() => setFormData({ ...formData, donationAmount: amount.toString() })}
-                            >
-                              ₹{amount}
-                            </Button>
-                          </Grid>
-                        ))}
-                      </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        label="Custom Amount (₹)"
-                        name="donationAmount"
-                        type="number"
-                        value={formData.donationAmount}
-                        onChange={handleInputChange}
-                        placeholder="Enter custom amount"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        multiline
-                        rows={4}
-                        label="Message (Optional)"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        size="large"
-                        endIcon={<SendIcon />}
-                        onClick={() => setDonateModalOpen(true)}
-                      >
-                        Proceed to Payment
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </form>
-              </CardContent>
-            </Card>
-          </>
-        )}
+      
 
         {/* Partnership Section */}
         {activeTab === 'partner' && (
@@ -323,7 +213,14 @@ const GetInvolved = () => {
           </>
         )}
       </Container>
-      <DonateModal open={donateModalOpen} onClose={() => setDonateModalOpen(false)} />
+      <DonateModal 
+        open={donateModalOpen} 
+        onClose={() => setDonateModalOpen(false)} 
+        amount={parseInt(formData.donationAmount) || 0}
+        donorName={formData.name}
+        donorEmail={formData.email}
+        donorPhone={formData.phone}
+      />
     </>
   );
 };

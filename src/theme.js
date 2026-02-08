@@ -25,23 +25,28 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial",
     h1: {
+      fontFamily: "'Poppins', 'Inter', system-ui",
       fontSize: '2.5rem',
+      fontWeight: 800,
+      marginBottom: '1rem',
+      color: '#2E5090',
+      letterSpacing: '0.3px'
+    },
+    h2: {
+      fontFamily: "'Poppins', 'Inter', system-ui",
+      fontSize: '2rem',
       fontWeight: 700,
       marginBottom: '1rem',
       color: '#2E5090',
-    },
-    h2: {
-      fontSize: '2rem',
-      fontWeight: 600,
-      marginBottom: '1rem',
-      color: '#2E5090',
       textAlign: 'center',
+      letterSpacing: '0.25px'
     },
     h3: {
+      fontFamily: "'Poppins', 'Inter', system-ui",
       fontSize: '1.5rem',
-      fontWeight: 600,
+      fontWeight: 700,
       color: '#2E5090',
     },
     body1: {

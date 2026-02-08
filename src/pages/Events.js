@@ -185,7 +185,7 @@ const Events = () => {
             <Grid container spacing={4}>
               {upcomingEvents.map((event) => (
                 <Grid item xs={12} md={6} key={event.id}>
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: { xs: "340px", md: "362px" } }}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: { xs: "340px", md: "358px" } }}>
                     <CardContent>
                       <Box sx={{ mb: 2 }}>
                         <Chip
@@ -237,9 +237,9 @@ const Events = () => {
             <Typography variant="h3" sx={{ mb: 4 }}>
               Past Events & Celebrations
             </Typography>
-            <Grid container spacing={4}>
+            <Grid container spacing={3}>
               {pastEvents.map((event, index) => (
-                <Grid item xs={12} md={6} key={index}>
+                <Grid item xs={12} md={4} sm={6} key={index}>
                   <Card sx={{ minWidth: { xs: "340px", md: "313px" } }}>
                     <CardContent>
                       <Typography variant="h5" sx={{ color: '#2E5090', mb: 1 }}>

@@ -91,7 +91,7 @@ const Contact = () => {
               justifyContent: { md: 'space-around' }
             }}>
               {/* Main Office */}
-              <Card sx={{ flex: { md: 1 }, mb: { xs: 3, md: 0 }, minWidth: { xs: "340px", md: "313px" } }}>
+              <Card sx={{ flex: { md: 1 }, mb: { xs: 3, md: 0 }, minWidth: { xs: "355px", md: "313px" } }}>
                 <CardContent>
                   <Typography variant="h6" sx={{ color: '#2E5090', mb: 2, fontWeight: 700 }}>
                     Main Office

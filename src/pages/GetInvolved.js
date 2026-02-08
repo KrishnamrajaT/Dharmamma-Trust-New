@@ -100,7 +100,7 @@ const GetInvolved = () => {
               </CardContent>
             </Card>
           </Grid> */}
-          <Grid item xs={12} md={4} sx={{ minWidth: { xs: "340px", md: "313px" } }}>
+          <Grid item xs={12} md={4} sx={{ minWidth: { xs: "355px", md: "313px" } }}>
             <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => { setActiveTab('donate'); setDonateModalOpen(true); }}>
               <CardContent>
                 <MonetizationOnIcon sx={{ fontSize: 64, color: '#FF9800', mb: 2 }} />

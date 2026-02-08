@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Box,
@@ -9,18 +9,12 @@ import {
   CardContent,
   Button,
   TextField,
-  Select,
-  MenuItem,
   FormControl,
-  InputLabel,
   Alert,
   Radio,
   RadioGroup,
   FormControlLabel,
-  Checkbox,
-  FormGroup,
 } from '@mui/material';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import BusinessIcon from '@mui/icons-material/Business';
 import SendIcon from '@mui/icons-material/Send';
@@ -51,15 +45,6 @@ const GetInvolved = () => {
     }));
   };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      interests: checked
-        ? [...prev.interests, name]
-        : prev.interests.filter(item => item !== name)
-    }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,44 +54,7 @@ const GetInvolved = () => {
     setTimeout(() => setSubmitted(false), 5000);
   };
 
-  const volunteerOpportunities = [
-    {
-      icon: '📚',
-      title: 'Education Support',
-      description: 'Help students with tutoring, mentoring, and study guidance.',
-      volunteers: '150+',
-    },
-    {
-      icon: '🏥',
-      title: 'Health Programs',
-      description: 'Assist in organizing health camps and wellness initiatives.',
-      volunteers: '80+',
-    },
-    {
-      icon: '🎉',
-      title: 'Event Organization',
-      description: 'Help plan and execute community events and celebrations.',
-      volunteers: '200+',
-    },
-    {
-      icon: '🤲',
-      title: 'Community Service',
-      description: 'Participate in distribution drives and community outreach.',
-      volunteers: '300+',
-    },
-    {
-      icon: '💻',
-      title: 'Digital Support',
-      description: 'Help with website, social media, and online communications.',
-      volunteers: '40+',
-    },
-    {
-      icon: '📋',
-      title: 'Administrative',
-      description: 'Support with documentation, records, and coordination.',
-      volunteers: '60+',
-    },
-  ];
+ 
 
   return (
     <>

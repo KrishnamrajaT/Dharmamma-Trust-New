@@ -19,7 +19,6 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SendIcon from '@mui/icons-material/Send';
-import MapIcon from '@mui/icons-material/Map';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -260,6 +259,7 @@ const Contact = () => {
           <Card>
             <CardContent>
               <iframe
+                title="Google Maps - Penchalakona, Andhra Pradesh"
                 width="100%"
                 height="400"
                 style={{ border: 0, borderRadius: '8px' }}
@@ -353,6 +353,7 @@ const Contact = () => {
         <DialogTitle>Our Location</DialogTitle>
         <DialogContent>
           <iframe
+            title="Google Maps - Penchalakona, Andhra Pradesh"
             width="100%"
             height="500"
             style={{ border: 0, borderRadius: '8px', marginTop: '16px' }}

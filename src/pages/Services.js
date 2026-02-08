@@ -9,11 +9,7 @@ import {
   CardContent,
   CardActions,
   Button,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SchoolIcon from '@mui/icons-material/School';
 import HotelIcon from '@mui/icons-material/Hotel';
 import EventIcon from '@mui/icons-material/Event';
@@ -64,29 +60,6 @@ const Services = () => {
       description: 'Providing nutritious meals to those in need during festivals and year-round.',
       details: 'We operate community kitchens during major festivals and run a year-round meal distribution program. All meals are prepared with care using quality ingredients and follow dietary guidelines.',
       benefits: ['Nutritious meals', 'Vegetarian options', 'Hygienic preparation', 'Community kitchen model'],
-    },
-  ];
-
-  const faqs = [
-    {
-      question: 'How can I benefit from uniform distribution?',
-      answer: 'If you are a school principal or guardian of an eligible child, please contact us with the child\'s details and school information. Eligibility is based on financial need and school enrollment.',
-    },
-    {
-      question: 'What are the accommodation rates at your guest houses?',
-      answer: 'Our rates are highly affordable, ranging from ₹300-800 per night depending on room type and location. We offer additional discounts for group bookings and extended stays.',
-    },
-    {
-      question: 'How can schools partner with us for events?',
-      answer: 'Schools can contact us to discuss event requirements. We customize our services based on your needs and work within your budget to create memorable experiences.',
-    },
-    {
-      question: 'Are there any fees for health programs?',
-      answer: 'No, all our health programs are free. We are committed to making healthcare accessible to everyone regardless of their financial situation.',
-    },
-    {
-      question: 'How does the scholarship program work?',
-      answer: 'Students can apply through our website or contact us directly. Selection is based on academic merit, financial need, and aptitude. We provide varying levels of support from partial to full scholarships.',
     },
   ];
 

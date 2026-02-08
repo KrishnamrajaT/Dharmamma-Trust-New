@@ -199,7 +199,7 @@ const About = () => {
           <Grid container spacing={4}>
             {teamMembers.map((member, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card sx={{ minWidth: { xs: "295px", md: "362px" } }}>
+                <Card sx={{ minWidth: { xs: "340px", md: "362px" } }}>
                   <CardContent sx={{ textAlign: 'center' }}>
                     <Avatar
                       sx={{

@@ -103,7 +103,7 @@ const GetInvolved = () => {
               </CardContent>
             </Card>
           </Grid> */}
-          <Grid item xs={12} md={4} sx={{ minWidth: { md: '300px' } }}>
+          <Grid item xs={12} md={4} sx={{ minWidth: { xs: "340px", md: "313px" } }}>
             <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => setActiveTab('donate')}>
               <CardContent>
                 <MonetizationOnIcon sx={{ fontSize: 64, color: '#FF9800', mb: 2 }} />
@@ -114,7 +114,7 @@ const GetInvolved = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4} sx={{ minWidth: { md: '300px' } }}>
+          <Grid item xs={12} md={4} sx={{ minWidth: { xs: "340px", md: "313px" } }}>
             <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => setActiveTab('partner')}>
               <CardContent>
                 <BusinessIcon sx={{ fontSize: 64, color: '#4CAF50', mb: 2 }} />

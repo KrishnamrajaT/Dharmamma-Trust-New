@@ -51,10 +51,10 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us - Dharmamma Trust</title>
-        <meta name="description" content="Get in touch with Dharmamma Trust. Find our contact details, office locations, and send us a message." />
+        <title>Contact Us - Dharmamma Charitable Trust</title>
+        <meta name="description" content="Get in touch with Dharmamma Charitable Trust. Find our contact details, office locations, and send us a message." />
         <meta name="keywords" content="contact, location, phone, email, inquiry" />
-        <meta property="og:title" content="Contact Us - Dharmamma Trust" />
+        <meta property="og:title" content="Contact Us - Dharmamma Charitable Trust" />
         <meta property="og:description" content="Contact information and inquiry form" />
       </Helmet>
 
@@ -85,66 +85,65 @@ const Contact = () => {
               Get in Touch
             </Typography>
 
-            {/* Main Office */}
-            <Card sx={{ mb: 3 }}>
-              <CardContent>
-                <Typography variant="h6" sx={{ color: '#2E5090', mb: 2, fontWeight: 700 }}>
-                  Main Office
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                  <LocationOnIcon sx={{ color: '#FF9800', mt: 0.5 }} />
-                  <Box>
-                    <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                      Dharmamma Trust Headquarters
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      123 Religious Street<br />
-                      Spiritual City, State 123456<br />
-                      Country
-                    </Typography>
+            <Box sx={{ 
+              display: 'flex', 
+              flexDirection: { xs: 'column', md: 'row' },
+              gap: { xs: 0, md: 3 },
+              justifyContent: { md: 'space-around' }
+            }}>
+              {/* Main Office */}
+              <Card sx={{ flex: { md: 1 }, mb: { xs: 3, md: 0 } }}>
+                <CardContent>
+                  <Typography variant="h6" sx={{ color: '#2E5090', mb: 2, fontWeight: 700 }}>
+                    Main Office
+                  </Typography>
+                  <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                    <LocationOnIcon sx={{ color: '#FF9800', mt: 0.5 }} />
+                    <Box>
+                      <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                        Dharmamma Charitable Trust
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Gonupalli<br />
+                        Nellore (dt), Andhra Pradesh<br />
+                        India
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* Contact Details */}
-            <Card sx={{ mb: 3 }}>
-              <CardContent>
-                <Typography variant="h6" sx={{ color: '#2E5090', mb: 2, fontWeight: 700 }}>
-                  Contact Information
-                </Typography>
+              {/* Contact Details */}
+              <Card sx={{ flex: { md: 1 }, mb: { xs: 3, md: 0 } }}>
+                <CardContent>
+                  <Typography variant="h6" sx={{ color: '#2E5090', mb: 2, fontWeight: 700 }}>
+                    Contact Information
+                  </Typography>
 
-                <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                  <PhoneIcon sx={{ color: '#FF9800', mt: 0.5 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">
-                      Primary: +91 (XXX) XXX-XXXX
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Support: +91 (XXX) XXX-XXXX
-                    </Typography>
+                  <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                    <PhoneIcon sx={{ color: '#FF9800', mt: 0.5 }} />
+                    <Box>
+                      <Typography variant="body2" color="text.secondary">
+                        Primary: 8500406444<br/>
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
 
-                <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                  <EmailIcon sx={{ color: '#FF9800', mt: 0.5 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">
-                      General: contact@dharmamma.org
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Donations: donate@dharmamma.org
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Volunteering: volunteer@dharmamma.org
-                    </Typography>
+                  <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                    <EmailIcon sx={{ color: '#FF9800', mt: 0.5 }} />
+                    <Box>
+                      <Typography variant="body2" color="text.secondary">
+                        General:dharmammatrust@gmail.com
+                      </Typography>
+                      
+                    </Box>
                   </Box>
-                </Box>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Box>
 
             {/* Office Hours */}
-            <Card>
+            {/* <Card>
               <CardContent>
                 <Typography variant="h6" sx={{ color: '#2E5090', mb: 2, fontWeight: 700 }}>
                   Office Hours
@@ -159,14 +158,13 @@ const Contact = () => {
                   <strong>Sunday & Holidays:</strong> Closed
                 </Typography>
               </CardContent>
-            </Card>
+            </Card> */}
           </Grid>
-
           {/* Contact Form */}
           <Grid item xs={12} md={6}>
             <Card>
               <CardContent>
-                <Typography variant="h3" sx={{ mb: 4 }}>
+                <Typography variant="h3">
                   Send us a Message
                 </Typography>
 
@@ -255,35 +253,43 @@ const Contact = () => {
         </Grid>
 
         {/* Map Section */}
-        <Box sx={{ mt: 8 }}>
-          <Typography variant="h3" sx={{ mb: 4 }}>
+        <Box sx={{ mt: 3 }}>
+          <Typography variant="h3" sx={{ mb: 2 }}>
             Our Location
           </Typography>
           <Card>
             <CardContent>
-              <Box
-                sx={{
-                  width: '100%',
-                  height: 400,
-                  background: 'linear-gradient(135deg, #E5E5E5 0%, #FFFFFF 100%)',
-                  borderRadius: 2,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  gap: 2,
-                }}
-              >
-                <MapIcon sx={{ fontSize: 80, color: '#2E5090', opacity: 0.3 }} />
-                <Typography variant="h6" color="text.secondary">
-                  Interactive Map
-                </Typography>
+              <iframe
+                width="100%"
+                height="400"
+                style={{ border: 0, borderRadius: '8px' }}
+                src="https://www.google.com/maps?q=14.3378692,79.4130252&output=embed"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <Box sx={{ mt: 2, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={() => setOpenMap(true)}
+                  href="https://www.google.com/maps/dir/?api=1&destination=14.3378692,79.4130252"
+                  target="_blank"
+                  size='small'
                 >
-                  View on Google Maps
+                  Get Directions
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  size='small'
+
+                  onClick={() => {
+                    const text = 'Penchalakona, Andhra Pradesh, India - https://maps.app.goo.gl/XYZ';
+                    navigator.clipboard.writeText(text);
+                    alert('Location link copied to clipboard!');
+                  }}
+                >
+                  Share Location
                 </Button>
               </Box>
             </CardContent>
@@ -346,27 +352,36 @@ const Contact = () => {
       <Dialog open={openMap} onClose={() => setOpenMap(false)} fullWidth maxWidth="lg">
         <DialogTitle>Our Location</DialogTitle>
         <DialogContent>
-          <Box
-            sx={{
-              width: '100%',
-              height: 500,
-              background: 'linear-gradient(135deg, #E5E5E5 0%, #FFFFFF 100%)',
-              borderRadius: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              mt: 2,
-            }}
-          >
-            <Typography color="text.secondary">
-              [Google Maps would be embedded here]
-            </Typography>
-          </Box>
+          <iframe
+            width="100%"
+            height="500"
+            style={{ border: 0, borderRadius: '8px', marginTop: '16px' }}
+            src="https://www.google.com/maps?q=14.3378692,79.4130252&output=embed"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenMap(false)}>Close</Button>
-          <Button color="primary" href="https://maps.google.com" target="_blank">
-            Open in Google Maps
+          <Button
+            variant="contained"
+            color="primary"
+            href="https://www.google.com/maps/dir/?api=1&destination=14.3378692,79.4130252"
+            target="_blank"
+          >
+            Get Directions
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              const text = 'Penchalakona, Andhra Pradesh, India - https://maps.app.goo.gl/XYZ';
+              navigator.clipboard.writeText(text);
+              alert('Location link copied to clipboard!');
+            }}
+          >
+            Share Location
           </Button>
         </DialogActions>
       </Dialog>

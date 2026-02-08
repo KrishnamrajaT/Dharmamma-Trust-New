@@ -1,4 +1,4 @@
-# 📚 Dharmamma Trust Website - Documentation Index
+# 📚 Dharmamma Charitable Trust Website - Documentation Index
 
 Welcome! Your comprehensive website has been successfully created. Use this index to navigate all documentation.
 
@@ -478,7 +478,7 @@ Everything you need is ready:
 
 ---
 
-**Your Dharmamma Trust Website is Complete and Ready!**
+**Your Dharmamma Charitable Trust Website is Complete and Ready!**
 
 🙏 Happy Customizing! 🙏
 

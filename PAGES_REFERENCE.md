@@ -1,4 +1,4 @@
-# Dharmamma Trust Website - Page Reference Guide
+# Dharmamma Charitable Trust Website - Page Reference Guide
 
 ## 📋 Overview of All Pages
 
@@ -13,7 +13,7 @@ This guide provides detailed information about each page, including what content
 #### 1. Hero Section
 - **Location**: Lines 60-80 in `Home.js`
 - **Customizable Elements**:
-  - Main heading: "Welcome to Dharmamma Trust"
+  - Main heading: "Welcome to Dharmamma Charitable Trust"
   - Subheading: "Serving Communities with Compassion and Dedication"
   - Two buttons: "Learn More About Us" and "Get Involved"
 
@@ -48,7 +48,7 @@ This guide provides detailed information about each page, including what content
   - Button text and link
 
 ### SEO Elements
-- Title: "Dharmamma Trust - Community Service & Religious Initiatives"
+- Title: "Dharmamma Charitable Trust - Community Service & Religious Initiatives"
 - Description: Brief overview of trust
 - Keywords: trust, religious service, community service, education
 
@@ -97,7 +97,7 @@ This guide provides detailed information about each page, including what content
 - Edit in the `teamMembers` array
 
 ### SEO Elements
-- Title: "About Dharmamma Trust - History, Mission & Team"
+- Title: "About Dharmamma Charitable Trust - History, Mission & Team"
 - Description: Comprehensive about us information
 
 ---
@@ -187,7 +187,7 @@ Each service card includes:
 ```
 
 ### SEO Elements
-- Title: "Our Services - Dharmamma Trust"
+- Title: "Our Services - Dharmamma Charitable Trust"
 - Description: Comprehensive service descriptions
 - Keywords: services, uniforms, accommodations, events, health, education
 
@@ -272,7 +272,7 @@ Each service card includes:
 ```
 
 ### SEO Elements
-- Title: "Events & Activities - Dharmamma Trust"
+- Title: "Events & Activities - Dharmamma Charitable Trust"
 - Description: Events calendar and gallery information
 
 ---
@@ -355,7 +355,7 @@ Add to `volunteerOpportunities` array:
 ```
 
 ### SEO Elements
-- Title: "Get Involved - Dharmamma Trust"
+- Title: "Get Involved - Dharmamma Charitable Trust"
 - Description: Information on volunteering, donating, and partnerships
 - Keywords: volunteer, donate, partnership, contribute
 
@@ -430,7 +430,7 @@ Also update in `Footer.js`:
 - Lines 75-85: Social media links
 
 ### SEO Elements
-- Title: "Contact Us - Dharmamma Trust"
+- Title: "Contact Us - Dharmamma Charitable Trust"
 - Description: Contact form, address, phone, email
 - Keywords: contact, location, address, inquiry
 

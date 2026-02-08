@@ -3,10 +3,10 @@ import { Box, Container, Grid, Typography, Link, Divider, Button } from '@mui/ma
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import InstagramIcon from '@mui/icons-material/Instagram';
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import TwitterIcon from '@mui/icons-material/Twitter';
+// import LinkedInIcon from '@mui/icons-material/LinkedIn';
+// import InstagramIcon from '@mui/icons-material/Instagram';
 import DonateModal from './DonateModal';
 
 const Footer = () => {
@@ -21,15 +21,14 @@ const Footer = () => {
         color: 'white',
         pt: 6,
         pb: 3,
-        mt: 8,
       }}
     >
       <Container maxWidth="lg">
         <Grid container spacing={4} sx={{ mb: 4 }}>
           {/* About Section */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12}sm={6} md={3}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-              🙏 Dharmamma Trust
+              🙏 Dharmamma Charitable Trust
             </Typography>
             <Typography variant="body2" sx={{ lineHeight: 1.8, opacity: 0.9 }}>
               Dedicated to serving communities and spreading compassion through various social and religious initiatives.
@@ -65,21 +64,21 @@ const Footer = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
                 <PhoneIcon sx={{ fontSize: '1.2rem', mt: 0.2 }} />
-                <Typography variant="body2">+91 (XXX) XXX-XXXX</Typography>
+                <Typography variant="body2">+91 8500406444</Typography>
               </Box>
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
                 <EmailIcon sx={{ fontSize: '1.2rem', mt: 0.2 }} />
-                <Typography variant="body2">contact@dharmamma.org</Typography>
+                <Typography variant="body2">dharmammatrust@gmail.com</Typography>
               </Box>
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
                 <LocationOnIcon sx={{ fontSize: '1.2rem', mt: 0.2 }} />
-                <Typography variant="body2">City, State, Country</Typography>
+                <Typography variant="body2">Gonupalli, Andhra Pradesh, India</Typography>
               </Box>
             </Box>
           </Grid>
 
           {/* Social Media */}
-          <Grid item xs={12} sm={6} md={3}>
+          {/* <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
               Follow Us
             </Typography>
@@ -97,7 +96,7 @@ const Footer = () => {
                 <LinkedInIcon />
               </Link>
             </Box>
-          </Grid>
+          </Grid> */}
         </Grid>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
@@ -111,7 +110,7 @@ const Footer = () => {
         {/* Copyright */}
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
-            © {currentYear} Dharmamma Trust. All rights reserved. |
+            © {currentYear} Dharmamma Charitable Trust. All rights reserved. |
             <Link href="/privacy" color="inherit" sx={{ ml: 1, '&:hover': { color: '#FF9800' } }}>
               Privacy Policy
             </Link>

@@ -42,10 +42,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Dharmamma Trust - Community Service & Religious Initiatives</title>
-        <meta name="description" content="Dharmamma Trust is dedicated to serving communities through religious and social initiatives including education support, pilgrim accommodations, and event organization." />
+        <title>Dharmamma Charitable Trust - Community Service & Religious Initiatives</title>
+        <meta name="description" content="Dharmamma Charitable Trust is dedicated to serving communities through religious and social initiatives including education support, pilgrim accommodations, and event organization." />
         <meta name="keywords" content="trust, religious service, community service, education, accommodations, events" />
-        <meta property="og:title" content="Dharmamma Trust - Community Service" />
+        <meta property="og:title" content="Dharmamma Charitable Trust - Community Service" />
         <meta property="og:description" content="Serving communities through religious and social initiatives" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -62,7 +62,7 @@ const Home = () => {
       >
           <Container maxWidth="md">
           <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3.5rem' }, fontWeight: 700, mb: 3, color:"white" }}>
-            Welcome to Dharmamma Trust
+            Welcome to Dharmamma Charitable Trust
           </Typography>
           <Typography variant="h5" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 4, opacity: 0.95 }}>
             Serving Communities with Compassion and Dedication
@@ -101,7 +101,7 @@ const Home = () => {
                 Our Mission
               </Typography>
               <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-                At Dharmamma Trust, our mission is to serve humanity through various social, religious, and cultural initiatives. We believe in the power of compassion and community service to create a positive impact on society. We strive to uplift underprivileged sections of society and promote spiritual growth through our diverse programs and initiatives.
+                At Dharmamma Charitable Trust, our mission is to serve humanity through various social, religious, and cultural initiatives. We believe in the power of compassion and community service to create a positive impact on society. We strive to uplift underprivileged sections of society and promote spiritual growth through our diverse programs and initiatives.
               </Typography>
             </Box>
           </Grid>
@@ -119,7 +119,7 @@ const Home = () => {
       </Container>
 
       {/* Key Services */}
-      <Box sx={{ background: '#F5F5F5', py: 8, mb: 8 }}>
+      <Box sx={{ background: '#F5F5F5', mb: 8 }}>
         <Container maxWidth="lg">
           <Typography variant="h2" sx={{ textAlign: 'center', mb: 6 }}>
             Our Key Services & Initiatives
@@ -207,9 +207,10 @@ const Home = () => {
           color: 'white',
           py: 8,
           textAlign: 'center',
+          marginBottom:7
         }}
       >
-        <Container maxWidth="md">
+        <Container maxWidth="md" sx={{mb:4}}>
           <Typography variant="h3" sx={{ mb: 3, fontWeight: 700 }}>
             Be Part of Our Mission
           </Typography>

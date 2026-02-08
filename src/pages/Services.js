@@ -66,10 +66,10 @@ const Services = () => {
   return (
     <>
       <Helmet>
-        <title>Our Services - Dharmamma Trust</title>
-        <meta name="description" content="Explore Dharmamma Trust's comprehensive services including uniform distribution, pilgrim accommodations, event organization, health programs, educational support, and meal distribution." />
+        <title>Our Services - Dharmamma Charitable Trust</title>
+        <meta name="description" content="Explore Dharmamma Charitable Trust's comprehensive services including uniform distribution, pilgrim accommodations, event organization, health programs, educational support, and meal distribution." />
         <meta name="keywords" content="services, uniforms, accommodations, events, health programs, education, charity" />
-        <meta property="og:title" content="Our Services - Dharmamma Trust" />
+        <meta property="og:title" content="Our Services - Dharmamma Charitable Trust" />
         <meta property="og:description" content="Comprehensive service offerings for community welfare" />
       </Helmet>
 

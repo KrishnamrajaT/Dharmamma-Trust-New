@@ -59,7 +59,7 @@ const Navigation = () => {
       <AppBar position="sticky" sx={{ background: 'linear-gradient(135deg, #2E5090 0%, #1B3057 100%)', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
         <Toolbar component={Container} maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <RouterLink to="/" style={{ textDecoration: 'none', color: 'white', fontWeight: 700, fontSize: '1.5rem' }}>
-            🙏 Dharmamma Trust
+            🙏 Dharmamma Charitable Trust
           </RouterLink>
 
           {/* Desktop Navigation */}

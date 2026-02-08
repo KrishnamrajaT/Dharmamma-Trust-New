@@ -14,7 +14,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DownloadIcon from '@mui/icons-material/Download';
 
 const bankDetails = {
-  accountName: 'Dharmamma Trust',
+  accountName: 'Dharmamma Charitable Trust',
   accountNumber: '123456789012',
   ifsc: 'SBIN0000123',
   bankName: 'State Bank of Example',
@@ -33,7 +33,7 @@ const copyToClipboard = async (text) => {
 const DonateModal = ({ open, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle sx={{ textAlign: 'center' }}>Donate to Dharmamma Trust</DialogTitle>
+      <DialogTitle sx={{ textAlign: 'center' }}>Donate to Dharmamma Charitable Trust</DialogTitle>
       <DialogContent>
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3, alignItems: 'center', justifyContent: 'center', py: 1 }}>
           <Box sx={{ textAlign: 'center' }}>

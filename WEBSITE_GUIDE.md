@@ -1,8 +1,8 @@
-# Dharmamma Trust - Website Implementation Guide
+# Dharmamma Charitable Trust - Website Implementation Guide
 
 ## 🎉 Welcome!
 
-Your comprehensive, professional website for Dharmamma Trust has been successfully created and is now running!
+Your comprehensive, professional website for Dharmamma Charitable Trust has been successfully created and is now running!
 
 ## ✅ What's Been Built
 
@@ -213,7 +213,7 @@ const theme = createTheme({
 
 Update the `<title>` in `public/index.html`:
 ```html
-<title>Dharmamma Trust - Community Service & Religious Initiatives</title>
+<title>Dharmamma Charitable Trust - Community Service & Religious Initiatives</title>
 ```
 
 ## 🔗 File Structure Reference
@@ -423,7 +423,7 @@ Before launching:
 
 ---
 
-**Your Dharmamma Trust website is ready to serve your community!**
+**Your Dharmamma Charitable Trust website is ready to serve your community!**
 
 For questions or support, refer to the React and Material-UI documentation:
 - React Docs: https://react.dev

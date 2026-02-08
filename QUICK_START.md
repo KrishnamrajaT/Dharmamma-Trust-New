@@ -1,4 +1,4 @@
-# 🚀 Quick Start Guide - Dharmamma Trust Website
+# 🚀 Quick Start Guide - Dharmamma Charitable Trust Website
 
 ## ✅ Website Status
 **Your website is LIVE and running!**
@@ -455,6 +455,6 @@ Refer to:
 
 **Happy Website Building! 🚀**
 
-Your Dharmamma Trust website is ready to make a difference in your community.
+Your Dharmamma Charitable Trust website is ready to make a difference in your community.
 
 *Last Updated: February 2026*

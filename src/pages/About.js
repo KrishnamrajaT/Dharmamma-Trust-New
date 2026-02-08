@@ -64,7 +64,7 @@ const About = () => {
     {
       icon: <AccountBalanceIcon sx={{ fontSize: 40, color: '#2E5090' }} />,
       title: 'Integrity',
-      description: 'We operate with honesty, transparency, and accountability in all our endeavors.',
+      description: 'We operate with honesty, transparency, and true accountability in our work.',
     },
     {
       icon: <StorageIcon sx={{ fontSize: 40, color: '#2E5090' }} />,
@@ -74,18 +74,18 @@ const About = () => {
     {
       icon: <PublicIcon sx={{ fontSize: 40, color: '#2E5090' }} />,
       title: 'Inclusivity',
-      description: 'We welcome and respect people from all backgrounds and beliefs.',
+      description: 'We welcome and respect people from all backgrounds and beliefs equally.',
     },
   ];
 
   return (
     <>
       <Helmet>
-        <title>About Dharmamma Trust - History, Mission & Team</title>
-        <meta name="description" content="Learn about Dharmamma Trust's history, mission, vision, core values, and dedicated team committed to serving communities." />
+        <title>About Dharmamma Charitable Trust - History, Mission & Team</title>
+        <meta name="description" content="Learn about Dharmamma Charitable Trust's history, mission, vision, core values, and dedicated team committed to serving communities." />
         <meta name="keywords" content="about trust, mission, vision, core values, team, history" />
-        <meta property="og:title" content="About Dharmamma Trust" />
-        <meta property="og:description" content="History, mission, and team of Dharmamma Trust" />
+        <meta property="og:title" content="About Dharmamma Charitable Trust" />
+        <meta property="og:description" content="History, mission, and team of Dharmamma Charitable Trust" />
       </Helmet>
 
       {/* Header */}
@@ -98,8 +98,8 @@ const About = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 700, color:"white" }}>
-            About Dharmamma Trust
+          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 700, color: "white" }}>
+            About Dharmamma Charitable Trust
           </Typography>
           <Typography variant="h5" sx={{ opacity: 0.95, mt: 2 }}>
             Our Story, Values, and Commitment to Service
@@ -114,13 +114,13 @@ const About = () => {
             Our History
           </Typography>
           <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.8 }}>
-            Dharmamma Trust was established with a vision to serve communities through religious and social initiatives. Over the years, we have grown from a small group of dedicated individuals to a well-established organization with hundreds of volunteers and thousands of beneficiaries.
+            Dharmamma Charitable Trust was established with a vision to serve communities through religious and social initiatives. Over the years, we have grown from a small group of dedicated individuals to a well-established organization with hundreds of volunteers and thousands of beneficiaries.
           </Typography>
           <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.8 }}>
             Our journey is rooted in the principles of dharma (righteousness) and compassion. We have consistently worked towards uplifting underprivileged sections of society, providing educational support, organizing spiritual events, and creating safe spaces for pilgrims and visitors.
           </Typography>
           <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-            Today, Dharmamma Trust stands as a beacon of hope and service in our communities, touching the lives of thousands of people every year through our various programs and initiatives.
+            Today, Dharmamma Charitable Trust stands as a beacon of hope and service in our communities, touching the lives of thousands of people every year through our various programs and initiatives.
           </Typography>
         </Box>
 
@@ -133,8 +133,8 @@ const About = () => {
           </Typography>
           <Grid container spacing={4}>
             {coreValues.map((value, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card>
+              <Grid item xs={12} sm={6} md={6} key={index}>
+                <Card sx={{ minWidth: { xs: "250px", md: "560px" } }}>
                   <CardContent sx={{ textAlign: 'center' }}>
                     <Box sx={{ mb: 2 }}>
                       {value.icon}
@@ -159,16 +159,16 @@ const About = () => {
           <Typography variant="h2" sx={{ mb: 4 }}>
             Our Goals
           </Typography>
-          <Grid container spacing={3}>
+          <Grid container display={"flex"} justifyContent={"space-around"} spacing={3}>
             <Grid item xs={12} md={6}>
               <Box>
                 <Typography variant="h5" sx={{ color: '#2E5090', mb: 2 }}>
                   Short-term Goals
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.8 }}>
-                  • Expand our uniform distribution program to reach 10,000 more children<br/>
-                  • Organize 50 more community events per year<br/>
-                  • Increase pilgrim accommodation capacity<br/>
+                  • Expand our uniform distribution program to reach 10,000 more children<br />
+                  • Organize 50 more community events per year<br />
+                  • Increase pilgrim accommodation capacity<br />
                   • Recruit and train 200 new volunteers
                 </Typography>
               </Box>
@@ -179,9 +179,9 @@ const About = () => {
                   Long-term Vision
                 </Typography>
                 <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-                  • Establish trust centers in 5+ cities<br/>
-                  • Create scholarship programs for underprivileged students<br/>
-                  • Develop sustainable community development projects<br/>
+                  • Establish trust centers in 5+ cities<br />
+                  • Create scholarship programs for underprivileged students<br />
+                  • Develop sustainable community development projects<br />
                   • Build a self-sufficient eco-friendly complex
                 </Typography>
               </Box>
@@ -199,7 +199,7 @@ const About = () => {
           <Grid container spacing={4}>
             {teamMembers.map((member, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card>
+                <Card sx={{ minWidth: { xs: "295px", md: "362px" } }}>
                   <CardContent sx={{ textAlign: 'center' }}>
                     <Avatar
                       sx={{

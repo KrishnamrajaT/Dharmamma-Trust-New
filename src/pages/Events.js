@@ -141,10 +141,10 @@ const Events = () => {
   return (
     <>
       <Helmet>
-        <title>Events & Activities - Dharmamma Trust</title>
-        <meta name="description" content="Explore Dharmamma Trust's upcoming events, festivals, community activities, and past event galleries." />
+        <title>Events & Activities - Dharmamma Charitable Trust</title>
+        <meta name="description" content="Explore Dharmamma Charitable Trust's upcoming events, festivals, community activities, and past event galleries." />
         <meta name="keywords" content="events, festivals, community activities, calendar, activities" />
-        <meta property="og:title" content="Events & Activities - Dharmamma Trust" />
+        <meta property="og:title" content="Events & Activities - Dharmamma Charitable Trust" />
         <meta property="og:description" content="Upcoming events, festivals, and community activities" />
       </Helmet>
 
@@ -185,7 +185,7 @@ const Events = () => {
             <Grid container spacing={4}>
               {upcomingEvents.map((event) => (
                 <Grid item xs={12} md={6} key={event.id}>
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: 280 }}>
+                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: "362px" }}>
                     <CardContent>
                       <Box sx={{ mb: 2 }}>
                         <Chip
@@ -240,7 +240,7 @@ const Events = () => {
             <Grid container spacing={4}>
               {pastEvents.map((event, index) => (
                 <Grid item xs={12} md={6} key={index}>
-                  <Card sx={{ minWidth: 280 }}>
+                  <Card sx={{ minWidth: "345px" }}>
                     <CardContent>
                       <Typography variant="h5" sx={{ color: '#2E5090', mb: 1 }}>
                         {event.title}

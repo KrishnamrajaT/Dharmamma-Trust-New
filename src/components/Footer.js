@@ -24,12 +24,17 @@ const Footer = () => {
       }}
     >
       <Container maxWidth="lg">
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
+          <Box
+            component="img"
+            src="/footerLogo.png"
+            alt="Dharmamma Charitable Trust"
+            sx={{ height: 120, width: 'auto' }}
+          />
+        </Box>
         <Grid container spacing={4} sx={{ mb: 4 }}>
           {/* About Section */}
           <Grid item xs={12}sm={6} md={3}>
-            <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-              🙏 Dharmamma Charitable Trust
-            </Typography>
             <Typography variant="body2" sx={{ lineHeight: 1.8, opacity: 0.9 }}>
               Dedicated to serving communities and spreading compassion through various social and religious initiatives.
             </Typography>
@@ -41,16 +46,16 @@ const Footer = () => {
               Quick Links
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link href="/" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
+              <Link href="/" underline="none" sx={{ '&:hover': { color: '#D09704' }, transition: 'color 0.3s', color: 'white' }}>
                 Home
               </Link>
-              <Link href="/about" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
+              <Link href="/about" underline="none" sx={{ '&:hover': { color: '#D09704' }, transition: 'color 0.3s', color: 'white' }}>
                 About Us
               </Link>
-              <Link href="/services" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
+              <Link href="/services" underline="none" sx={{ '&:hover': { color: '#D09704' }, transition: 'color 0.3s', color: 'white' }}>
                 Services
               </Link>
-              <Link href="/events" underline="none" sx={{ '&:hover': { color: '#FF9800' }, transition: 'color 0.3s', color: 'white' }}>
+              <Link href="/events" underline="none" sx={{ '&:hover': { color: '#D09704' }, transition: 'color 0.3s', color: 'white' }}>
                 Events
               </Link>
             </Box>
@@ -83,16 +88,16 @@ const Footer = () => {
               Follow Us
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
-              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#FF9800' } }}>
+              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#D09704' } }}>
                 <FacebookIcon />
               </Link>
-              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#FF9800' } }}>
+              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#D09704' } }}>
                 <TwitterIcon />
               </Link>
-              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#FF9800' } }}>
+              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#D09704' } }}>
                 <InstagramIcon />
               </Link>
-              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#FF9800' } }}>
+              <Link href="#" color="inherit" sx={{ '&:hover': { color: '#D09704' } }}>
                 <LinkedInIcon />
               </Link>
             </Box>
@@ -111,11 +116,11 @@ const Footer = () => {
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
             © {currentYear} Dharmamma Charitable Trust. All rights reserved. |
-            <Link href="/privacy" color="inherit" sx={{ ml: 1, '&:hover': { color: '#FF9800' } }}>
+            <Link href="/privacy" color="inherit" sx={{ ml: 1, '&:hover': { color: '#D09704' } }}>
               Privacy Policy
             </Link>
             {' | '}
-            <Link href="/terms" color="inherit" sx={{ '&:hover': { color: '#FF9800' } }}>
+            <Link href="/terms" color="inherit" sx={{ '&:hover': { color: '#D09704' } }}>
               Terms & Conditions
             </Link>
           </Typography>

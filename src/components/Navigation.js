@@ -58,13 +58,17 @@ const Navigation = () => {
     <>
       <AppBar position="sticky" sx={{ background: 'linear-gradient(135deg, #2E5090 0%, #1B3057 100%)', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
         <Toolbar component={Container} maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <RouterLink to="/" style={{ textDecoration: 'none', color: 'white', fontWeight: 700, fontSize: '1.5rem' }}>
-            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-               Dharmamma Charitable Trust
-            </Box>
-            <Box sx={{ display: { xs: 'block', md: 'none' }, fontSize: '1.2rem' }}>
-              Dharmamma Trust
-            </Box>
+          <RouterLink to="/" style={{ textDecoration: 'none', color: 'white' }}>
+            <Box
+              component="img"
+              src="/topNavLogo.png"
+              alt="Dharmamma Charitable Trust"
+              sx={{
+                display: 'block',
+                height: { xs: 36, md: 44 },
+                width: 'auto',
+              }}
+            />
           </RouterLink>
 
           {/* Desktop Navigation */}
@@ -84,7 +88,7 @@ const Navigation = () => {
                     left: 0,
                     width: location.pathname === item.path ? '100%' : '0%',
                     height: '3px',
-                    backgroundColor: '#FF9800',
+                    backgroundColor: '#D09704',
                     transition: 'width 0.3s ease',
                   },
                   '&:hover::after': {

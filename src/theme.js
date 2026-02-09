@@ -8,9 +8,9 @@ const theme = createTheme({
       dark: '#1B3057',
     },
     secondary: {
-      main: '#FF9800', // Warm Orange
-      light: '#FFB74D',
-      dark: '#E65100',
+      main: '#D09704', // Gold
+      light: '#E8C547',
+      dark: '#9E7815',
     },
     success: {
       main: '#4CAF50',

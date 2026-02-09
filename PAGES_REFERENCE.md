@@ -477,7 +477,7 @@ palette: {
     dark: '#1B3057',     // Very Dark Blue
   },
   secondary: {
-    main: '#FF9800',     // Orange
+    main: '#D09704',     // Gold
     light: '#FFB74D',    // Light Orange
     dark: '#E65100',     // Dark Orange
   },

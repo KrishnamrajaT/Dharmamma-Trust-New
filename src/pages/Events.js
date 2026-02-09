@@ -200,19 +200,19 @@ const Events = () => {
                       </Typography>
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mb: 2 }}>
                         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <EventIcon sx={{ color: '#FF9800', fontSize: '1.3rem' }} />
+                          <EventIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
                           <Typography variant="body2">{event.date}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <AccessTimeIcon sx={{ color: '#FF9800', fontSize: '1.3rem' }} />
+                          <AccessTimeIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
                           <Typography variant="body2">{event.time}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <LocationOnIcon sx={{ color: '#FF9800', fontSize: '1.3rem' }} />
+                          <LocationOnIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
                           <Typography variant="body2">{event.location}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <GroupIcon sx={{ color: '#FF9800', fontSize: '1.3rem' }} />
+                          <GroupIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
                           <Typography variant="body2">Expected: {event.attendees}</Typography>
                         </Box>
                       </Box>
@@ -303,7 +303,7 @@ const Events = () => {
                           width: '100%',
                           paddingBottom: '100%',
                           position: 'relative',
-                          background: 'linear-gradient(135deg, #2E5090 0%, #FF9800 100%)',
+                          background: 'linear-gradient(135deg, #2E5090 0%, #D09704 100%)',
                           borderRadius: 1,
                           display: 'flex',
                           alignItems: 'center',

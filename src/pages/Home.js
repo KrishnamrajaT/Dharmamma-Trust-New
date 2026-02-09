@@ -164,7 +164,7 @@ const Home = () => {
                 <Grid container spacing={4} sx={{ textAlign: 'center', justifyContent: 'center' }}>
           <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ minWidth: 160 }}>
-              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+              <Typography variant="h3" sx={{ color: '#D09704', fontWeight: 700, mb: 1 }}>
                 5000+
               </Typography>
               <Typography variant="body1">Children Supported</Typography>
@@ -173,7 +173,7 @@ const Home = () => {
 
           <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ minWidth: 160 }}>
-              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+              <Typography variant="h3" sx={{ color: '#D09704', fontWeight: 700, mb: 1 }}>
                 150+
               </Typography>
               <Typography variant="body1">Events Organized</Typography>
@@ -182,7 +182,7 @@ const Home = () => {
 
           <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ minWidth: 160 }}>
-              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+              <Typography variant="h3" sx={{ color: '#D09704', fontWeight: 700, mb: 1 }}>
                 10000+
               </Typography>
               <Typography variant="body1">Pilgrims Served</Typography>
@@ -191,7 +191,7 @@ const Home = () => {
 
           <Grid item xs={12} sm={6} md={3} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ minWidth: 160 }}>
-              <Typography variant="h3" sx={{ color: '#FF9800', fontWeight: 700, mb: 1 }}>
+              <Typography variant="h3" sx={{ color: '#D09704', fontWeight: 700, mb: 1 }}>
                 500+
               </Typography>
               <Typography variant="body1">Active Volunteers</Typography>
@@ -203,7 +203,7 @@ const Home = () => {
       {/* Call to Action */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #FF9800 0%, #F57C00 100%)',
+          background: 'linear-gradient(135deg, #D09704 0%, #9E7815 100%)',
           color: 'white',
           py: 8,
           textAlign: 'center',

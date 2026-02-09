@@ -97,7 +97,7 @@ const Contact = () => {
                     Main Office
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                    <LocationOnIcon sx={{ color: '#FF9800', mt: 0.5 }} />
+                    <LocationOnIcon sx={{ color: '#D09704', mt: 0.5 }} />
                     <Box>
                       <Typography variant="body1" sx={{ fontWeight: 600 }}>
                         Dharmamma Charitable Trust
@@ -120,7 +120,7 @@ const Contact = () => {
                   </Typography>
 
                   <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                    <PhoneIcon sx={{ color: '#FF9800', mt: 0.5 }} />
+                    <PhoneIcon sx={{ color: '#D09704', mt: 0.5 }} />
                     <Box>
                       <Typography variant="body2" color="text.secondary">
                         Primary: 8500406444<br/>
@@ -129,7 +129,7 @@ const Contact = () => {
                   </Box>
 
                   <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-                    <EmailIcon sx={{ color: '#FF9800', mt: 0.5 }} />
+                    <EmailIcon sx={{ color: '#D09704', mt: 0.5 }} />
                     <Box>
                       <Typography variant="body2" color="text.secondary">
                         General:dharmammatrust@gmail.com

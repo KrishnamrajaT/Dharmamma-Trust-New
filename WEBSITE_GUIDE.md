@@ -56,7 +56,7 @@ Your comprehensive, professional website for Dharmamma Charitable Trust has been
 
 - **Professional Color Palette**
   - Primary Deep Blue: #2E5090
-  - Secondary Warm Orange: #FF9800
+  - Secondary Gold: #D09704
   - Success Green: #4CAF50
 
 - **Responsive Design**
@@ -119,7 +119,7 @@ This creates a production-optimized build in the `build/` folder.
 **Homepage Numbers** (`src/pages/Home.js` - lines 100-120):
 ```javascript
 // Change these statistics to match your actual numbers
-<Typography variant="h3" sx={{ color: '#FF9800' }}>5000+</Typography>
+<Typography variant="h3" sx={{ color: '#D09704' }}>5000+</Typography>
 <Typography variant="body1">Children Supported</Typography>
 ```
 
@@ -178,9 +178,9 @@ const theme = createTheme({
       dark: '#1B3057',
     },
     secondary: {
-      main: '#FF9800',      // Change secondary color
-      light: '#FFB74D',
-      dark: '#E65100',
+      main: '#D09704',      // Change secondary color
+      light: '#E8C547',
+      dark: '#B8860B',
     },
     // ... update other colors
   }

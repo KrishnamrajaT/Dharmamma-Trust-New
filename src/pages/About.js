@@ -206,7 +206,7 @@ const About = () => {
                         width: 80,
                         height: 80,
                         margin: '0 auto 1rem',
-                        background: 'linear-gradient(135deg, #2E5090 0%, #FF9800 100%)',
+                        background: 'linear-gradient(135deg, #2E5090 0%, #D09704 100%)',
                         fontSize: '1.5rem',
                       }}
                     >
@@ -215,7 +215,7 @@ const About = () => {
                     <Typography variant="h6" sx={{ mb: 0.5 }}>
                       {member.name}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: '#FF9800', fontWeight: 600, mb: 1 }}>
+                    <Typography variant="body2" sx={{ color: '#D09704', fontWeight: 600, mb: 1 }}>
                       {member.role}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

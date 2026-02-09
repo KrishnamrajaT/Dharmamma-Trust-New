@@ -130,7 +130,7 @@ Your comprehensive, professional website has been **fully developed, tested, and
 ### Visual Design
 - **Professional Color Scheme**
   - Primary: Deep Blue (#2E5090)
-  - Secondary: Warm Orange (#FF9800)
+  - Secondary: Warm Gold (#D09704)
   - Success: Green (#4CAF50)
   - Neutral: Grays and whites
 

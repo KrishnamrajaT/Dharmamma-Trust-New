@@ -81,7 +81,7 @@ palette: {
     main: '#2E5090',    ← Change to your brand color
   },
   secondary: {
-    main: '#FF9800',    ← Change secondary color
+    main: '#D09704',    ← Change secondary color
   }
 }
 ```

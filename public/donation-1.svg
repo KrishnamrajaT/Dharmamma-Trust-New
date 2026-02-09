@@ -1,0 +1,8 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#1B3057" />
+  <rect x="24" y="24" width="752" height="552" rx="24" fill="none" stroke="#D09704" stroke-width="6" />
+  <circle cx="400" cy="260" r="90" fill="#D09704" opacity="0.15" />
+  <path d="M 320 280 C 340 240 380 220 420 220 C 470 220 510 255 510 305 C 510 375 420 420 400 430 C 380 420 290 375 290 305 C 290 295 300 285 320 280 Z" fill="#D09704" />
+  <text x="400" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#FFFFFF">Donation Photo 1</text>
+  <text x="400" y="510" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#D09704">Replace this placeholder</text>
+</svg>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Box,
@@ -9,14 +9,20 @@ import {
   Card,
   CardContent,
   CardActions,
+  IconButton,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import SchoolIcon from '@mui/icons-material/School';
 import HotelIcon from '@mui/icons-material/Hotel';
 import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const Home = () => {
+  const slidesPerView = 1;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const autoplayRef = useRef(null);
   const services = [
     {
       icon: <SchoolIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
@@ -39,6 +45,39 @@ const Home = () => {
     
   ];
 
+  const donationPhotos = [
+    { src: '/donation-1.svg', title: 'Food Distribution' },
+    { src: '/donation-2.svg', title: 'School Supplies' },
+    { src: '/donation-3.svg', title: 'Pilgrim Support' },
+    { src: '/donation-4.svg', title: 'Community Event' },
+  ];
+  const carouselSlides = [{ type: 'hero' }, ...donationPhotos];
+
+  const maxIndex = Math.max(0, carouselSlides.length - slidesPerView);
+  const gapPx = 24;
+  const slideBasis = `calc((100% - ${(slidesPerView - 1) * gapPx}px) / ${slidesPerView})`;
+
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [currentIndex, maxIndex]);
+
+  useEffect(() => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+    autoplayRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 3500);
+
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, [maxIndex]);
+
   return (
     <>
       <Helmet>
@@ -50,44 +89,136 @@ const Home = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      {/* Hero Section */}
-      <Box
-        sx={{
-          background: 'linear-gradient(135deg, #2E5090 0%, #1B3057 100%)',
-          color: 'white',
-          py: 10,
-          textAlign: 'center',
-          mb: 8,
-        }}
-      >
-          <Container maxWidth="md">
-          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3.5rem' }, fontWeight: 700, mb: 3, color:"white" }}>
-            Welcome to Dharmamma Charitable Trust
-          </Typography>
-          <Typography variant="h5" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 4, opacity: 0.95 }}>
-            Serving Communities with Compassion and Dedication
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button
-              component={RouterLink}
-              to="/about"
-              variant="contained"
-              color="secondary"
-              size="large"
-              sx={{ fontWeight: 600 }}
+      {/* Hero + Donation Carousel */}
+      <Box sx={{ background: '#F5F5F5',mt:2,mb:5}}>
+        <Container maxWidth="lg">
+          <Box sx={{ position: 'relative' }}>
+            <Box sx={{ overflow: 'hidden' }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: `${gapPx}px`,
+                  transform: `translateX(calc(-${currentIndex} * (${slideBasis} + ${gapPx}px)))`,
+                  transition: 'transform 0.5s ease',
+                }}
+              >
+                {carouselSlides.map((slide) => (
+                  <Box
+                    key={slide.type === 'hero' ? 'hero' : slide.src}
+                    sx={{
+                      flex: `0 0 ${slideBasis}`,
+                      borderRadius: 2,
+                      overflow: 'hidden',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      background: 'white',
+                      boxShadow: '0 6px 18px rgba(0,0,0,0.08)',
+                      height: { xs: 320, md: 400, lg: 400 },
+                    }}
+                  >
+                    {slide.type === 'hero' ? (
+                      <Box
+                        sx={{
+                          background: 'linear-gradient(135deg, #2E5090 0%, #1B3057 100%)',
+                          color: 'white',
+                          height: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          textAlign: 'center',
+                          
+                        }}
+                      >
+                        <Box>
+                          <Typography variant="h1" sx={{ fontSize: { xs: '1.8rem', md: '3.2rem' }, fontWeight: 700, mb: 2, color: 'white' }}>
+                            Welcome to Dharmamma Charitable Trust
+                          </Typography>
+                          <Typography variant="h5" sx={{ fontSize: { xs: '1rem', md: '1.25rem' }, mb: 3, opacity: 0.95 }}>
+                            Serving Communities with Compassion and Dedication
+                          </Typography>
+                          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+                            <Button
+                              component={RouterLink}
+                              to="/about"
+                              variant="contained"
+                              color="secondary"
+                              size="large"
+                              sx={{ fontWeight: 600 }}
+                            >
+                              Learn More About Us
+                            </Button>
+                            <Button
+                              component={RouterLink}
+                              to="/get-involved"
+                              variant="outlined"
+                              color="inherit"
+                              size="large"
+                              sx={{ fontWeight: 600, border: '2px solid white' }}
+                            >
+                              Get Involved
+                            </Button>
+                          </Box>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <Box
+                        component="img"
+                        src={slide.src}
+                        alt="Donation moment"
+                        sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    )}
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+
+            <IconButton
+              aria-label="previous"
+              onClick={() => setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))}
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: { xs: -6, sm: -12 },
+                transform: 'translateY(-50%)',
+                background: 'white',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                '&:hover': { background: '#fff7e0' },
+              }}
             >
-              Learn More About Us
-            </Button>
-            <Button
-              component={RouterLink}
-              to="/get-involved"
-              variant="outlined"
-              color="inherit"
-              size="large"
-              sx={{ fontWeight: 600, border: '2px solid white' }}
+              <ChevronLeftIcon />
+            </IconButton>
+            <IconButton
+              aria-label="next"
+              onClick={() => setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))}
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                right: { xs: -6, sm: -12 },
+                transform: 'translateY(-50%)',
+                background: 'white',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+                '&:hover': { background: '#fff7e0' },
+              }}
             >
-              Get Involved
-            </Button>
+              <ChevronRightIcon />
+            </IconButton>
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.2, mt: 3 }}>
+              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                <Box
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  sx={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    cursor: 'pointer',
+                    background: index === currentIndex ? '#D09704' : 'rgba(0,0,0,0.25)',
+                    transition: 'background 0.3s ease',
+                  }}
+                />
+              ))}
+            </Box>
           </Box>
         </Container>
       </Box>

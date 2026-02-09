@@ -131,7 +131,7 @@ const About = () => {
           <Typography variant="h2" sx={{ textAlign: 'center', mb: 6 }}>
             Our Core Values
           </Typography>
-          <Grid container spacing={4}>
+          <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
             {coreValues.map((value, index) => (
               <Grid item xs={12} sm={6} md={6} key={index}>
                 <Card sx={{ minWidth: { xs: "250px", md: "560px" } }}>
@@ -196,10 +196,10 @@ const About = () => {
           <Typography variant="h2" sx={{ textAlign: 'center', mb: 6 }}>
             Our Dedicated Team
           </Typography>
-          <Grid container spacing={4}>
+          <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
             {teamMembers.map((member, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card sx={{ minWidth: { xs: "340px", md: "362px" } }}>
+                <Card sx={{ minWidth: { xs: "365px", md: "362px" } }}>
                   <CardContent sx={{ textAlign: 'center' }}>
                     <Avatar
                       sx={{

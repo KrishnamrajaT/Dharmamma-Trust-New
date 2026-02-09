@@ -88,7 +88,7 @@ const GetInvolved = () => {
           Ways to Contribute
         </Typography>
 
-        <Grid container spacing={{ xs: 4, md: "64px" }} sx={{ mb: 8 }}>
+        <Grid container spacing={{ xs: 4, md: "64px" }} sx={{ mb: 8, justifyContent: 'center' }}>
           {/* <Grid item xs={12} md={4} sx={{ minWidth: { md: '300px' } }}>
             <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => setActiveTab('volunteer')}>
               <CardContent>

@@ -25,7 +25,7 @@ import carouselPic2 from '../assets/carouselPic2.jpeg';
 import carouselPic2Large from '../assets/carouselPic2.1.jpeg';
 import carouselPic3 from '../assets/carouselPic3.jpeg';
 import carouselPic4 from '../assets/carouselPic4.jpeg';
-import carouselPic5 from '../assets/carouselPic5.jpeg';
+import carouselPic6 from '../assets/carouselPic6.jpeg';
 
 const Home = () => {
   const slidesPerView = 1;
@@ -61,7 +61,7 @@ const Home = () => {
     { src: carouselPic1, title: 'Community Outreach' },
     { src: carouselPic3, title: 'Community Gathering' },
     { src: carouselPic4, title: 'Health Initiative' },
-    { src: carouselPic5, title: 'Education Support' },
+    { src: carouselPic6, title: 'Education Support' },
   ];
   const carouselSlides = [{ type: 'hero' }, ...donationPhotos];
 

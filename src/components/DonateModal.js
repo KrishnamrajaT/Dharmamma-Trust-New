@@ -7,15 +7,12 @@ import {
   Button,
   Box,
   Typography,
-  IconButton,
-  Stack,
   Tabs,
   Tab,
   TextField,
   Grid,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import DownloadIcon from "@mui/icons-material/Download";
 
 const bankDetails = {
   accountName: "Dharmamma Charitable Trust",

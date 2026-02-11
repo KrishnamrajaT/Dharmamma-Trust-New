@@ -13,8 +13,6 @@ import {
 import SchoolIcon from '@mui/icons-material/School';
 import HotelIcon from '@mui/icons-material/Hotel';
 import EventIcon from '@mui/icons-material/Event';
-import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
-import BookIcon from '@mui/icons-material/Book';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
 const Services = () => {

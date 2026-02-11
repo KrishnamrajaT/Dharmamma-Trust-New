@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Box, Container, Grid, Typography, Link, Divider, Button } from '@mui/material';
+import { Box, Container, Grid, Typography, Link, Divider } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,11 +6,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 // import TwitterIcon from '@mui/icons-material/Twitter';
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 // import InstagramIcon from '@mui/icons-material/Instagram';
-import DonateModal from './DonateModal';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [donateOpen, setDonateOpen] = useState(false);
 
   return (
     <Box

@@ -14,6 +14,8 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import StorageIcon from '@mui/icons-material/Storage';
 import PublicIcon from '@mui/icons-material/Public';
+import baluTreasurer from '../assets/baluTreasurer.jpeg';
+import ammaChairman from '../assets/chairma_amma.jpeg';
 
 const About = () => {
   const teamMembers = [
@@ -27,6 +29,7 @@ const About = () => {
       name: 'Vice Chairman',
       role: 'Operations',
       initials: 'VC',
+      image: ammaChairman,
       description: 'Oversees day-to-day operations and initiatives',
     },
     {
@@ -39,6 +42,7 @@ const About = () => {
       name: 'Treasurer',
       role: 'Finance',
       initials: 'TR',
+      image: baluTreasurer,
       description: 'Manages financial resources and transparency',
     },
     {
@@ -209,6 +213,8 @@ const About = () => {
                         background: 'linear-gradient(135deg, #2E5090 0%, #D09704 100%)',
                         fontSize: '1.5rem',
                       }}
+                      src={member.image}
+                      alt={member.name}
                     >
                       {member.initials}
                     </Avatar>

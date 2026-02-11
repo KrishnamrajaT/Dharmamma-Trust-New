@@ -31,7 +31,6 @@ const Footer = () => {
               sx={{
                 height: 120,
                 width: "auto",
-                padding: "4px 4px",
                 borderRadius: "12px",
                 border: "2px solid #D09704",
                 background: "#1B3057",

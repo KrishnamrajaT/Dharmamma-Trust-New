@@ -75,9 +75,8 @@ const Navigation = () => {
                 display: 'block',
                 height: { xs: 36, md: 44 },
                 width: 'auto',
-                padding: '4px 4px',
                 borderRadius: '10px',
-                border: '2px solid #D09704',
+                border: '1.4px solid #D09704',
                 background: '#1B3057',
               }}
             />

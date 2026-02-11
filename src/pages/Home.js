@@ -10,6 +10,8 @@ import {
   CardContent,
   CardActions,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import SchoolIcon from '@mui/icons-material/School';
@@ -18,11 +20,20 @@ import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import carouselPic1 from '../assets/carouselPic1.jpeg';
+import carouselPic2 from '../assets/carouselPic2.jpeg';
+import carouselPic2Large from '../assets/carouselPic2.1.jpeg';
+import carouselPic3 from '../assets/carouselPic3.jpeg';
+import carouselPic4 from '../assets/carouselPic4.jpeg';
+import carouselPic5 from '../assets/carouselPic5.jpeg';
 
 const Home = () => {
   const slidesPerView = 1;
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const autoplayRef = useRef(null);
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
   const services = [
     {
       icon: <SchoolIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
@@ -46,10 +57,11 @@ const Home = () => {
   ];
 
   const donationPhotos = [
-    { src: '/donation-1.svg', title: 'Food Distribution' },
-    { src: '/donation-2.svg', title: 'School Supplies' },
-    { src: '/donation-3.svg', title: 'Pilgrim Support' },
-    { src: '/donation-4.svg', title: 'Community Event' },
+    { src: carouselPic1, title: 'Community Outreach' },
+    { src: isMdUp ? carouselPic2Large : carouselPic2, title: 'Volunteer Support' },
+    { src: carouselPic3, title: 'Community Gathering' },
+    { src: carouselPic4, title: 'Health Initiative' },
+    { src: carouselPic5, title: 'Education Support' },
   ];
   const carouselSlides = [{ type: 'hero' }, ...donationPhotos];
 
@@ -67,6 +79,9 @@ const Home = () => {
     if (autoplayRef.current) {
       clearInterval(autoplayRef.current);
     }
+    if (isPaused) {
+      return () => {};
+    }
     autoplayRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
     }, 3500);
@@ -76,7 +91,7 @@ const Home = () => {
         clearInterval(autoplayRef.current);
       }
     };
-  }, [maxIndex]);
+  }, [maxIndex, isPaused]);
 
   return (
     <>
@@ -91,8 +106,12 @@ const Home = () => {
 
       {/* Hero + Donation Carousel */}
       <Box sx={{ background: '#F5F5F5',mt:2,mb:5}}>
-        <Container maxWidth="lg">
-          <Box sx={{ position: 'relative' }}>
+        <Container>
+          <Box
+            sx={{ position: 'relative' }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <Box sx={{ overflow: 'hidden' }}>
               <Box
                 sx={{
@@ -163,7 +182,7 @@ const Home = () => {
                       <Box
                         component="img"
                         src={slide.src}
-                        alt="Donation moment"
+                        alt={slide.title}
                         sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     )}
@@ -219,6 +238,13 @@ const Home = () => {
                 />
               ))}
             </Box>
+
+            <Typography
+              variant="body2"
+              sx={{ textAlign: 'center', mt: 1.5, color: 'text.secondary' }}
+            >
+              Tip: Hover over the carousel to pause and take your time viewing each photo.
+            </Typography>
           </Box>
         </Container>
       </Box>

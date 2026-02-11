@@ -50,18 +50,20 @@ const About = () => {
       image: baluTreasurer,
       description: 'Manages financial resources and transparency',
     },
+     {
+      name: 'Kamala Vallepu',
+      role: 'Events Manager',
+      initials: 'EM',
+      image: kamala,
+    },
     {
       name: 'Volunteer Coordinator',
       role: 'Community',
       initials: 'VC',
       description: 'Coordinates volunteer activities and engagement',
     },
-    {
-      name: 'Kamala Vallepu',
-      role: 'Events Manager',
-      initials: 'EM',
-      image: kamala,
-    },
+    
+   
   ];
 
   const coreValues = [

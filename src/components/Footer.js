@@ -105,12 +105,12 @@ const Footer = () => {
         </Grid>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
-          <Button variant="contained" color="secondary" onClick={() => setDonateOpen(true)} sx={{ fontWeight: 700 }}>Donate</Button>
+          {/* <Button variant="contained" color="secondary" onClick={() => setDonateOpen(true)} sx={{ fontWeight: 700 }}>Donate</Button> */}
         </Box>
 
         <Divider sx={{ bg: 'rgba(255,255,255,0.1)', my: 3 }} />
 
-        <DonateModal open={donateOpen} onClose={() => setDonateOpen(false)} />
+        {/* <DonateModal open={donateOpen} onClose={() => setDonateOpen(false)} /> */}
 
         {/* Copyright */}
         <Box sx={{ textAlign: 'center' }}>

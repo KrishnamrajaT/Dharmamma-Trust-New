@@ -40,20 +40,7 @@ const Services = () => {
       details: 'From large-scale festivals to intimate community gatherings, we handle all aspects of event planning and execution. Our events promote spiritual growth, cultural preservation, and community bonding.',
       benefits: ['Professional planning', 'Experienced coordinators', 'Community participation', 'Cost-effective execution'],
     },
-    {
-      icon: <HealthAndSafetyIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
-      title: 'Health & Wellness Programs',
-      description: 'Community health camps and wellness initiatives for underserved populations.',
-      details: 'We conduct regular health awareness camps, free medical check-ups, and wellness seminars. Our programs focus on preventive health care and health education for marginalized communities.',
-      benefits: ['Free health check-ups', 'Awareness workshops', 'Partnership with medical professionals', 'Preventive care focus'],
-    },
-    {
-      icon: <BookIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
-      title: 'Educational Support',
-      description: 'Scholarships, study materials, and mentoring for students in need.',
-      details: 'We provide financial assistance, educational materials, and mentoring to help deserving students pursue their education. Our program covers school and college-level students from economically weaker sections.',
-      benefits: ['Scholarships', 'Study materials', 'Mentoring support', 'Career guidance'],
-    },
+    
     {
       icon: <LocalDiningIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
       title: 'Meal & Food Distribution',

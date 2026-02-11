@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Box,
@@ -6,61 +6,103 @@ import {
   Typography,
   Grid,
   Card,
-  CardContent,
   Button,
   TextField,
-  Alert,
- 
+  Tabs,
+  Tab,
+  Stack,
+  Checkbox,
+  FormControlLabel,
+  Link,
 } from '@mui/material';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import BusinessIcon from '@mui/icons-material/Business';
-import SendIcon from '@mui/icons-material/Send';
-import DonateModal from '../components/DonateModal';
+
+const amountOptions = [2000, 5000, 10000];
 
 const GetInvolved = () => {
-  const [activeTab, setActiveTab] = useState('volunteer');
-  const [donateModalOpen, setDonateModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
+  const [citizenshipTab, setCitizenshipTab] = useState(0);
+  const [selectedAmount, setSelectedAmount] = useState(5000);
+  const [customAmount, setCustomAmount] = useState('');
+  const [agreed, setAgreed] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [donor, setDonor] = useState({
     name: '',
-    email: '',
     phone: '',
-    volunteerType: '',
-    availability: '',
-    interests: [],
-    donationAmount: '',
-    donationType: 'onetime',
-    businessName: '',
-    message: '',
+    email: '',
+    pan: '',
   });
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const isIndian = citizenshipTab === 0;
+  const isOtherSelected = selectedAmount === 'other';
+  const parsedCustomAmount = Number(customAmount);
+  const donationAmount = isOtherSelected ? parsedCustomAmount : selectedAmount;
+  const isAmountValid = Number.isFinite(donationAmount) && donationAmount > 0;
+
+  const handleAmountSelect = (value) => {
+    setSelectedAmount(value);
+    setCustomAmount('');
   };
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically send data to a backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+  const handleFieldChange = (field) => (e) => {
+    setDonor((prev) => ({ ...prev, [field]: e.target.value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
- 
+  const validate = () => {
+    const nextErrors = {};
+    const nameValue = donor.name.trim();
+    const phoneValue = donor.phone.trim();
+    const emailValue = donor.email.trim();
+    const panValue = donor.pan.trim();
+
+    if (!nameValue) nextErrors.name = 'Enter your full name';
+    if (!phoneValue) {
+      nextErrors.phone = 'Enter your mobile number';
+    } else if (!/^[0-9]{10}$/.test(phoneValue)) {
+      nextErrors.phone = 'Enter a valid 10-digit mobile number';
+    }
+    if (!emailValue) {
+      nextErrors.email = 'Enter your email address';
+    } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailValue)) {
+      nextErrors.email = 'Enter a valid email address';
+    }
+
+    if (isOtherSelected) {
+      if (!Number.isFinite(parsedCustomAmount) || parsedCustomAmount <= 0) {
+        nextErrors.amount = 'Enter a valid donation amount';
+      }
+    }
+
+    if (isIndian) {
+      if (!panValue) {
+        nextErrors.pan = 'PAN is required for tax benefits';
+      } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(panValue.toUpperCase())) {
+        nextErrors.pan = 'Enter a valid PAN (e.g. ABCDE1234F)';
+      }
+    } else if (panValue && !/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(panValue.toUpperCase())) {
+      nextErrors.pan = 'Enter a valid PAN (e.g. ABCDE1234F)';
+    }
+
+    if (!agreed) {
+      nextErrors.agreed = 'Please accept the Terms and Privacy Policy';
+    }
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleDonateClick = () => {
+    if (!validate()) return;
+    // Payment integration can be wired here.
+  };
 
   return (
     <>
       <Helmet>
-        <title>Get Involved - Dharmamma Charitable Trust</title>
-        <meta name="description" content="Join Dharmamma Charitable Trust as a volunteer or donor. Learn how you can contribute to our mission of community service." />
-        <meta name="keywords" content="volunteer, donate, partnership, get involved, contribute" />
-        <meta property="og:title" content="Get Involved - Dharmamma Charitable Trust" />
-        <meta property="og:description" content="Volunteer, donate, or partner with us" />
+        <title>Donate - Dharmamma Charitable Trust</title>
+        <meta name="description" content="Support Dharmamma Charitable Trust with your donation and help us expand community services." />
+        <meta name="keywords" content="donate, donation, charity, community service" />
+        <meta property="og:title" content="Donate - Dharmamma Charitable Trust" />
+        <meta property="og:description" content="Make a donation to support community programs." />
       </Helmet>
 
       {/* Header */}
@@ -69,155 +111,334 @@ const GetInvolved = () => {
           background: 'linear-gradient(135deg, #2E5090 0%, #1B3057 100%)',
           color: 'white',
           py: 6,
-          mb: 8,
+          mb: 6,
         }}
       >
         <Container maxWidth="lg">
-          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 700, color: "white" }}>
-            Get Involved
+          <Typography
+            variant="h1"
+            sx={{ fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 700, color: 'white' }}
+          >
+            Donate
           </Typography>
           <Typography variant="h5" sx={{ opacity: 0.95, mt: 2 }}>
-            Make a Difference in Your Community
+            Your generosity helps us serve more families and communities.
           </Typography>
         </Container>
       </Box>
 
-      <Container maxWidth="lg">
-        {/* Ways to Get Involved */}
-        <Typography variant="h2" sx={{ textAlign: 'center', mb: 6 }}>
-          Ways to Contribute
-        </Typography>
-
-        <Grid container spacing={{ xs: 4, md: "64px" }} sx={{ mb: 8, justifyContent: 'center' }}>
-          {/* <Grid item xs={12} md={4} sx={{ minWidth: { md: '300px' } }}>
-            <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => setActiveTab('volunteer')}>
-              <CardContent>
-                <VolunteerActivismIcon sx={{ fontSize: 64, color: '#2E5090', mb: 2 }} />
-                <Typography variant="h5" sx={{ mb: 1 }}>Volunteer</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Dedicate your time and skills to help our mission.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid> */}
-          <Grid item xs={12} md={4} sx={{ minWidth: { xs: "355px", md: "313px" } }}>
-            <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => { setActiveTab('donate'); setDonateModalOpen(true); }}>
-              <CardContent>
-                <MonetizationOnIcon sx={{ fontSize: 64, color: '#D09704', mb: 2 }} />
-                <Typography variant="h5" sx={{ mb: 1 }}>Donate</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Contribute financially to support our programs.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4} sx={{ minWidth: { xs: "340px", md: "313px" } }}>
-            <Card sx={{ textAlign: 'center', cursor: 'pointer', height: '100%', transition: 'all 0.3s', '&:hover': { transform: 'translateY(-8px)' } }} onClick={() => setActiveTab('partner')}>
-              <CardContent>
-                <BusinessIcon sx={{ fontSize: 64, color: '#4CAF50', mb: 2 }} />
-                <Typography variant="h5" sx={{ mb: 1 }}>Partner</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Collaborate with us for mutual beneficial initiatives.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      
-
-        {/* Partnership Section */}
-        {activeTab === 'partner' && (
-          <>
-            <Typography variant="h2" sx={{ mb: 6 }}>
-              Partner With Us
+      <Container maxWidth="lg" sx={{ pb: 8 }}>
+        <Box
+          sx={{
+            display: { xs: 'block', md: 'flex' },
+            gap: { xs: 4, md: 6 },
+            alignItems: 'flex-start',
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            <Typography variant="h2" sx={{ mb: 2, color: '#D09704' }}>
+              Why Donate?
             </Typography>
-            <Card sx={{ mb: 8 }}>
-              <CardContent>
-                <Typography variant="h3" sx={{ mb: 4 }}>
-                  Business Partnership Form
+            <Typography variant="body1" sx={{ mb: 2 }}>
+              Your support creates tangible impact for children, families, and elders in need.
+              Every donation helps us provide essentials, health care, education, and community
+              services that restore dignity and hope.
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 2 }}>
+              We focus on practical, on-the-ground programs that uplift lives and build a more
+              compassionate society. Together, we can reach more people and expand these efforts.
+            </Typography>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 2 }}>
+              Your contributions make a difference through:
+            </Typography>
+            <Box component="ol" sx={{ pl: 3, mb: 2 }}>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  Supporting children with educational supplies and mentoring.
                 </Typography>
-                {submitted && <Alert severity="success" sx={{ mb: 3 }}>We'll review your proposal and contact you shortly.</Alert>}
-                <form onSubmit={handleSubmit}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Business Name"
-                        name="businessName"
-                        required
-                        value={formData.businessName}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Contact Person Name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Email Address"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        fullWidth
-                        label="Phone Number"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <TextField
-                        fullWidth
-                        multiline
-                        rows={6}
-                        label="Partnership Proposal"
-                        name="message"
-                        required
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Describe your partnership idea and how we can collaborate..."
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  Empowering youth through skills training and guidance.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  Strengthening women-led initiatives and self-reliance.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  Caring for senior citizens with medical and daily support.
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 0 }}>
+                  Providing food, shelter, and relief for the homeless.
+                </Typography>
+              </li>
+            </Box>
+
+            <Grid container spacing={2} sx={{ mb: 3 }}>
+              {[
+                { label: 'Families supported', value: '10,000+' },
+                { label: 'Community meals served', value: '150,000+' },
+                { label: 'Students supported', value: '3,500+' },
+              ].map((stat) => (
+                <Grid item xs={12} sm={4} key={stat.label}>
+                  <Box
+                    sx={{
+                      border: '1px solid rgba(208,151,4,0.35)',
+                      borderRadius: 2,
+                      p: 2,
+                      textAlign: 'center',
+                      background: 'rgba(208,151,4,0.08)',
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ fontWeight: 700, color: '#1B3057' }}>
+                      {stat.value}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {stat.label}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+
+            <Box
+              sx={{
+                border: '1px solid rgba(208,151,4,0.4)',
+                borderRadius: 2,
+                p: 2.5,
+                mb: 3,
+                background: '#FFF9E8',
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: '#1B3057' }}>
+                How your donation is used
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 1 }}>
+                We allocate funds to programs with the highest community impact and urgent needs.
+              </Typography>
+              <Box component="ul" sx={{ pl: 3, mb: 0 }}>
+                <li>
+                  <Typography variant="body2">Education kits and school uniforms</Typography>
+                </li>
+                <li>
+                  <Typography variant="body2">Medical camps and health support</Typography>
+                </li>
+                <li>
+                  <Typography variant="body2">Food distribution and relief outreach</Typography>
+                </li>
+              </Box>
+            </Box>
+
+            <Box sx={{ mb: 2 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+                Need help or have questions?
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Email: dharmammatrust@gmail.com | Phone: +91 8500406444
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box sx={{ width: '100%', maxWidth: 520, minWidth: { md: 420 } }}>
+            <Card
+              sx={{
+                border: '1px solid #D09704',
+                borderRadius: 2,
+                overflow: 'hidden',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+              }}
+            >
+              <Box sx={{ background: '#FFF7E0', px: 3, py: 2, textAlign: 'center' }}>
+                <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                  Yes! I'd like to help
+                </Typography>
+              </Box>
+              <Box sx={{ px: 3, py: 2.5 }}>
+                <Tabs
+                  value={citizenshipTab}
+                  onChange={(e, newValue) => setCitizenshipTab(newValue)}
+                  variant="fullWidth"
+                  sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}
+                >
+                  <Tab label="Indian Citizen" sx={{ textTransform: 'none', fontWeight: 600 }} />
+                  <Tab label="Foreign Citizen/NRI" sx={{ textTransform: 'none', fontWeight: 600 }} />
+                </Tabs>
+
+                {isIndian && (
+                  <Box
+                    sx={{
+                      border: '1px solid #D09704',
+                      borderRadius: 1.5,
+                      px: 2,
+                      py: 1.5,
+                      mb: 2,
+                      color: '#8A6A00',
+                      background: '#FFF9E8',
+                    }}
+                  >
+                    <Typography variant="body2">
+                      Tax Benefit: Donations are eligible for 50% tax exemption under Section 80G
+                      of the Income Tax Act (India). PAN is required to claim tax benefits.
+                    </Typography>
+                  </Box>
+                )}
+
+                <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+                  Choose an amount to donate <Box component="span" sx={{ color: '#D09704' }}>*</Box>
+                </Typography>
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' },
+                    gap: 1,
+                    mb: 2,
+                  }}
+                >
+                  {amountOptions.map((amount) => {
+                    const isActive = selectedAmount === amount;
+                    return (
                       <Button
-                        type="submit"
-                        variant="contained"
-                        color="success"
-                        size="large"
-                        endIcon={<SendIcon />}
+                        key={amount}
+                        variant="outlined"
+                        onClick={() => handleAmountSelect(amount)}
+                        sx={{
+                          borderColor: isActive ? '#D09704' : 'divider',
+                          color: isActive ? '#D09704' : 'text.primary',
+                          fontWeight: isActive ? 700 : 600,
+                          backgroundColor: isActive ? 'rgba(208,151,4,0.12)' : 'transparent',
+                          '&:hover': {
+                            borderColor: '#D09704',
+                            backgroundColor: 'rgba(208,151,4,0.18)',
+                          },
+                        }}
                       >
-                        Submit Partnership Proposal
+                        ₹{amount}
                       </Button>
-                    </Grid>
-                  </Grid>
-                </form>
-              </CardContent>
+                    );
+                  })}
+                  <Button
+                    variant="outlined"
+                    onClick={() => setSelectedAmount('other')}
+                    sx={{
+                      borderColor: isOtherSelected ? '#D09704' : 'divider',
+                      color: isOtherSelected ? '#D09704' : 'text.primary',
+                      fontWeight: isOtherSelected ? 700 : 600,
+                      backgroundColor: isOtherSelected ? 'rgba(208,151,4,0.12)' : 'transparent',
+                      '&:hover': {
+                        borderColor: '#D09704',
+                        backgroundColor: 'rgba(208,151,4,0.18)',
+                      },
+                    }}
+                  >
+                    Other
+                  </Button>
+                </Box>
+
+                <Stack spacing={2}>
+                  {isOtherSelected && (
+                    <TextField
+                      label="Other Amount (INR)"
+                      type="number"
+                      fullWidth
+                      value={customAmount}
+                      onChange={(e) => {
+                        setCustomAmount(e.target.value);
+                        setErrors((prev) => ({ ...prev, amount: undefined }));
+                      }}
+                      error={!!errors.amount}
+                      helperText={errors.amount}
+                    />
+                  )}
+                  <TextField
+                    label="Enter your full name"
+                    fullWidth
+                    value={donor.name}
+                    onChange={handleFieldChange('name')}
+                    error={!!errors.name}
+                    helperText={errors.name}
+                  />
+                  <TextField
+                    label="Mobile Number"
+                    fullWidth
+                    value={donor.phone}
+                    onChange={handleFieldChange('phone')}
+                    error={!!errors.phone}
+                    helperText={errors.phone}
+                  />
+                  <TextField
+                    label="Email Address"
+                    type="email"
+                    fullWidth
+                    value={donor.email}
+                    onChange={handleFieldChange('email')}
+                    error={!!errors.email}
+                    helperText={errors.email}
+                  />
+                  <TextField
+                    label="PAN Card"
+                    fullWidth
+                    value={donor.pan}
+                    onChange={handleFieldChange('pan')}
+                    error={!!errors.pan}
+                    helperText={errors.pan || (isIndian ? 'PAN is mandatory for tax benefits.' : 'PAN optional for foreign donors.')}
+                  />
+                </Stack>
+
+                <FormControlLabel
+                  sx={{ mt: 2 }}
+                  control={
+                    <Checkbox
+                      checked={agreed}
+                      onChange={(e) => {
+                        setAgreed(e.target.checked);
+                        setErrors((prev) => ({ ...prev, agreed: undefined }));
+                      }}
+                      color="primary"
+                    />
+                  }
+                  label={
+                    <Typography variant="body2">
+                      I have read and agree to the{' '}
+                      <Link href="/terms" underline="hover">
+                        Terms and Conditions
+                      </Link>{' '}
+                      and{' '}
+                      <Link href="/privacy" underline="hover">
+                        Privacy Policy
+                      </Link>
+                      .
+                    </Typography>
+                  }
+                />
+                {errors.agreed && (
+                  <Typography variant="caption" sx={{ color: 'error.main' }}>
+                    {errors.agreed}
+                  </Typography>
+                )}
+
+                <Button
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    background: '#D09704',
+                    fontWeight: 700,
+                    '&:hover': { background: '#B07A00' },
+                  }}
+                  onClick={handleDonateClick}
+                >
+                  Continue to Payment ₹{isAmountValid ? donationAmount.toFixed(2) : '0.00'}
+                </Button>
+              </Box>
             </Card>
-          </>
-        )}
+          </Box>
+        </Box>
       </Container>
-      <DonateModal 
-        open={donateModalOpen} 
-        onClose={() => setDonateModalOpen(false)} 
-        amount={parseInt(formData.donationAmount) || 0}
-        donorName={formData.name}
-        donorEmail={formData.email}
-        donorPhone={formData.phone}
-      />
     </>
   );
 };

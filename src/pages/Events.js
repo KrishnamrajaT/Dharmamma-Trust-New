@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import {
   Box,
   Container,
@@ -18,12 +18,12 @@ import {
   DialogActions,
   ImageList,
   ImageListItem,
-} from '@mui/material';
-import EventIcon from '@mui/icons-material/Event';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import GroupIcon from '@mui/icons-material/Group';
-import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
+} from "@mui/material";
+import EventIcon from "@mui/icons-material/Event";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import GroupIcon from "@mui/icons-material/Group";
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
 
 const Events = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -33,98 +33,57 @@ const Events = () => {
   const upcomingEvents = [
     {
       id: 1,
-      title: 'Diwali Celebration 2024',
-      date: 'October 31, 2024',
-      time: '6:00 PM - 10:00 PM',
-      location: 'Community Center, Main Street',
-      category: 'Festival',
-      // description: 'Join us for a grand Diwali celebration with traditional performances, decorations, and special meals.',
-      attendees: '2000+',
-      image: '🪔',
+      title: "Uniform Distribution Drive",
+      date: "June 15, 2026",
+      time: "9:00 AM - 2:00 PM",
+      location: "Government School",
+      category: "Community Service",
+      // description: 'Distribution of school uniforms to 500 underprivileged students. Registration required.',
+      attendees: "500+",
+      image: "👕",
     },
     {
       id: 2,
-      title: 'Uniform Distribution Drive',
-      date: 'November 15, 2024',
-      time: '9:00 AM - 2:00 PM',
-      location: 'Government School, East Ward',
-      category: 'Community Service',
-      // description: 'Distribution of school uniforms to 500 underprivileged students. Registration required.',
-      attendees: '500+',
-      image: '👕',
+      title: "Diwali Celebration 2026",
+      date: "October 31, 2026",
+      time: "6:00 PM - 10:00 PM",
+      location: "Gonupalli",
+      category: "Festival",
+      // description: 'Join us for a grand Diwali celebration with traditional performances, decorations, and special meals.',
+      attendees: "2000+",
+      image: "🪔",
     },
     {
       id: 3,
-      title: 'Health Camp',
-      date: 'November 22, 2024',
-      time: '8:00 AM - 5:00 PM',
-      location: 'Community Hall, West End',
-      category: 'Health & Wellness',
+      title: "Health Camp",
+      date: "November 22, 2026",
+      time: "8:00 AM - 5:00 PM",
+      location: "Penchala Kona",
+      category: "Health & Wellness",
       // description: 'Free health check-ups, consultation, and awareness sessions with experienced doctors.',
-      attendees: '300+',
-      image: '⚕️',
+      attendees: "300+",
+      image: "⚕️",
     },
-    
   ];
 
   const pastEvents = [
     {
-      title: 'Holi Festival 2024',
-      date: 'March 25, 2024',
-      location: 'Community Park',
-      attendees: '1500+',
+      title: "Holi Festival 2025",
+      date: "March 25, 2025",
+      location: "gonupalli",
+      attendees: "1500+",
       photos: 4,
-      testimonials: [
-        'Amazing event! The vibe was amazing. - Priya M.'
-      ],
+      // testimonials: ["Amazing event! The vibe was amazing. - Priya M."],
     },
     {
-      title: 'Uniform Distribution - Spring 2024',
-      date: 'April 10, 2024',
-      location: 'Multiple Schools',
-      attendees: '2000+ children',
+      title: "Uniform Distribution - Spring 2025",
+      date: "April 10, 2025",
+      location: "Multiple Schools",
+      attendees: "200+ children",
       photos: 8,
-      testimonials: [
-        'My child is so happy with her new uniform! - Mrs. Sharma'
-      ],
-    },
-    {
-      title: 'Navratri Celebration',
-      date: 'October 3-12, 2024',
-      location: 'Cultural Center',
-      attendees: '3000+',
-      photos: 12,
-      testimonials: [
-        'Best Navratri celebration ever! - Rajesh K.'
-      ],
-    },
-    {
-      title: 'Summer Health Camp 2024',
-      date: 'June 15, 2024',
-      location: 'East Wing Community Center',
-      attendees: '400+',
-      photos: 6,
-      testimonials: [
-        'Great medical expertise and care. - Dr. Anil Kumar'
-      ],
-    },  {
-      title: 'Summer Health Camp 2024',
-      date: 'June 15, 2024',
-      location: 'East Wing Community Center',
-      attendees: '400+',
-      photos: 6,
-      testimonials: [
-        'Great medical expertise and care. - Dr. Anil Kumar'
-      ],
-    },  {
-      title: 'Summer Health Camp 2024',
-      date: 'June 15, 2024',
-      location: 'East Wing Community Center',
-      attendees: '400+',
-      photos: 6,
-      testimonials: [
-        'Great medical expertise and care. - Dr. Anil Kumar'
-      ],
+      // testimonials: [
+      //   "My child is so happy with her new uniform! - Mrs. Sharma",
+      // ],
     },
   ];
 
@@ -142,23 +101,42 @@ const Events = () => {
     <>
       <Helmet>
         <title>Events & Activities - Dharmamma Charitable Trust</title>
-        <meta name="description" content="Explore Dharmamma Charitable Trust's upcoming events, festivals, community activities, and past event galleries." />
-        <meta name="keywords" content="events, festivals, community activities, calendar, activities" />
-        <meta property="og:title" content="Events & Activities - Dharmamma Charitable Trust" />
-        <meta property="og:description" content="Upcoming events, festivals, and community activities" />
+        <meta
+          name="description"
+          content="Explore Dharmamma Charitable Trust's upcoming events, festivals, community activities, and past event galleries."
+        />
+        <meta
+          name="keywords"
+          content="events, festivals, community activities, calendar, activities"
+        />
+        <meta
+          property="og:title"
+          content="Events & Activities - Dharmamma Charitable Trust"
+        />
+        <meta
+          property="og:description"
+          content="Upcoming events, festivals, and community activities"
+        />
       </Helmet>
 
       {/* Header */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, #2E5090 0%, #1B3057 100%)',
-          color: 'white',
+          background: "linear-gradient(135deg, #2E5090 0%, #1B3057 100%)",
+          color: "white",
           py: 6,
           mb: 8,
         }}
       >
         <Container maxWidth="lg">
-          <Typography variant="h1" sx={{ fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 700,color:"white"}}>
+          <Typography
+            variant="h1"
+            sx={{
+              fontSize: { xs: "2rem", md: "3rem" },
+              fontWeight: 700,
+              color: "white",
+            }}
+          >
             Events & Activities
           </Typography>
           <Typography variant="h5" sx={{ opacity: 0.95, mt: 2 }}>
@@ -169,7 +147,7 @@ const Events = () => {
 
       <Container maxWidth="lg">
         {/* Tabs */}
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider", mb: 4 }}>
           <Tabs value={tabValue} onChange={(e, value) => setTabValue(value)}>
             <Tab label="Upcoming Events" />
             <Tab label="Past Events" />
@@ -185,7 +163,14 @@ const Events = () => {
             <Grid container spacing={4}>
               {upcomingEvents.map((event) => (
                 <Grid item xs={12} md={6} key={event.id}>
-                  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', minWidth: { xs: "355px", md: "358px" } }}>
+                  <Card
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      minWidth: { xs: "355px", md: "358px" },
+                    }}
+                  >
                     <CardContent>
                       <Box sx={{ mb: 2 }}>
                         <Chip
@@ -195,34 +180,61 @@ const Events = () => {
                           sx={{ mb: 1 }}
                         />
                       </Box>
-                      <Typography variant="h5" sx={{ color: '#2E5090', mb: 2 }}>
+                      <Typography variant="h5" sx={{ color: "#2E5090", mb: 2 }}>
                         {event.image} {event.title}
                       </Typography>
-                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, mb: 2 }}>
-                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <EventIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 1.5,
+                          mb: 2,
+                        }}
+                      >
+                        <Box
+                          sx={{ display: "flex", gap: 1, alignItems: "center" }}
+                        >
+                          <EventIcon
+                            sx={{ color: "#D09704", fontSize: "1.3rem" }}
+                          />
                           <Typography variant="body2">{event.date}</Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <AccessTimeIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
+                        <Box
+                          sx={{ display: "flex", gap: 1, alignItems: "center" }}
+                        >
+                          <AccessTimeIcon
+                            sx={{ color: "#D09704", fontSize: "1.3rem" }}
+                          />
                           <Typography variant="body2">{event.time}</Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <LocationOnIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
-                          <Typography variant="body2">{event.location}</Typography>
+                        <Box
+                          sx={{ display: "flex", gap: 1, alignItems: "center" }}
+                        >
+                          <LocationOnIcon
+                            sx={{ color: "#D09704", fontSize: "1.3rem" }}
+                          />
+                          <Typography variant="body2">
+                            {event.location}
+                          </Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                          <GroupIcon sx={{ color: '#D09704', fontSize: '1.3rem' }} />
-                          <Typography variant="body2">Expected: {event.attendees}</Typography>
+                        <Box
+                          sx={{ display: "flex", gap: 1, alignItems: "center" }}
+                        >
+                          <GroupIcon
+                            sx={{ color: "#D09704", fontSize: "1.3rem" }}
+                          />
+                          <Typography variant="body2">
+                            Expected: {event.attendees}
+                          </Typography>
                         </Box>
                       </Box>
                       <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
                         {event.description}
                       </Typography>
                     </CardContent>
-                    <CardActions sx={{ mt: 'auto' }}>
-                      <Button color="primary">Register</Button>
-                      <Button color="secondary">Share</Button>
+                    <CardActions sx={{ mt: "auto" }}>
+                      {/* <Button color="primary">Register</Button>
+                      <Button color="secondary">Share</Button> */}
                     </CardActions>
                   </Card>
                 </Grid>
@@ -242,10 +254,17 @@ const Events = () => {
                 <Grid item xs={12} md={4} sm={6} key={index}>
                   <Card sx={{ minWidth: { xs: "355px", md: "313px" } }}>
                     <CardContent>
-                      <Typography variant="h5" sx={{ color: '#2E5090', mb: 1 }}>
+                      <Typography variant="h5" sx={{ color: "#2E5090", mb: 1 }}>
                         {event.title}
                       </Typography>
-                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 2 }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 1,
+                          mb: 2,
+                        }}
+                      >
                         <Typography variant="body2" color="text.secondary">
                           📅 {event.date}
                         </Typography>
@@ -256,12 +275,15 @@ const Events = () => {
                           👥 {event.attendees}
                         </Typography>
                       </Box>
-                      <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#2E5090', mb: 1 }}>
+                      {/* <Typography
+                        variant="subtitle2"
+                        sx={{ fontWeight: 700, color: "#2E5090", mb: 1 }}
+                      >
                         Highlights:
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      </Typography> */}
+                      {/* <Typography variant="body2" color="text.secondary">
                         {event.testimonials[0]}
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                     <CardActions>
                       <Button
@@ -281,35 +303,42 @@ const Events = () => {
       </Container>
 
       {/* Gallery Dialog */}
-      <Dialog open={openGallery} onClose={handleCloseGallery} fullWidth maxWidth="md">
-        <DialogTitle>
-          {selectedEvent?.title} - Photo Gallery
-        </DialogTitle>
+      <Dialog
+        open={openGallery}
+        onClose={handleCloseGallery}
+        fullWidth
+        maxWidth="md"
+      >
+        <DialogTitle>{selectedEvent?.title} - Photo Gallery</DialogTitle>
         <DialogContent>
           <>
             {selectedEvent && (
               <>
-                <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
+                <Typography
+                  variant="body2"
+                  sx={{ mb: 2, color: "text.secondary" }}
+                >
                   📅 {selectedEvent.date} | 📍 {selectedEvent.location}
                 </Typography>
-                <Typography variant="body2" sx={{ mb: 3 }}>
+                {/* <Typography variant="body2" sx={{ mb: 3 }}>
                   "{selectedEvent.testimonials[0]}"
-                </Typography>
+                </Typography> */}
                 <ImageList cols={2} gap={8}>
                   {Array.from({ length: selectedEvent.photos }).map((_, i) => (
                     <ImageListItem key={i}>
                       <Box
                         sx={{
-                          width: '100%',
-                          paddingBottom: '100%',
-                          position: 'relative',
-                          background: 'linear-gradient(135deg, #2E5090 0%, #D09704 100%)',
+                          width: "100%",
+                          paddingBottom: "100%",
+                          position: "relative",
+                          background:
+                            "linear-gradient(135deg, #2E5090 0%, #D09704 100%)",
                           borderRadius: 1,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: 'white',
-                          fontSize: '3rem',
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "white",
+                          fontSize: "3rem",
                         }}
                       >
                         📸

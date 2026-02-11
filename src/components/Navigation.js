@@ -26,8 +26,8 @@ const Navigation = () => {
     { label: 'About Us', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Events', path: '/events' },
-    { label: 'Get Involved', path: '/get-involved' },
     { label: 'Contact', path: '/contact' },
+    { label: 'Donate', path: '/get-involved', highlight: true },
   ];
 
   const drawer = (
@@ -45,6 +45,14 @@ const Navigation = () => {
               to={item.path}
               onClick={() => setMobileOpen(false)}
               selected={location.pathname === item.path}
+              sx={
+                item.highlight
+                  ? {
+                      backgroundColor: 'rgba(208,151,4,0.18)',
+                      '&:hover': { backgroundColor: 'rgba(208,151,4,0.28)' },
+                    }
+                  : undefined
+              }
             >
               <ListItemText primary={item.label} />
             </ListItemButton>
@@ -81,6 +89,17 @@ const Navigation = () => {
                 color="inherit"
                 sx={{
                   position: 'relative',
+                  ...(item.highlight
+                    ? {
+                        backgroundColor: '#D09704',
+                        color: '#1B3057',
+                        fontWeight: 700,
+                        borderRadius: 999,
+                        px: 2.5,
+                        '&:hover': { backgroundColor: '#B07A00' },
+                        '&::after': { display: 'none' },
+                      }
+                    : {}),
                   '&::after': {
                     content: '""',
                     position: 'absolute',

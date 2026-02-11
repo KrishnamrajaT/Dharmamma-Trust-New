@@ -57,8 +57,8 @@ const Home = () => {
   ];
 
   const donationPhotos = [
-    { src: carouselPic1, title: 'Community Outreach' },
     { src: isMdUp ? carouselPic2Large : carouselPic2, title: 'Volunteer Support' },
+    { src: carouselPic1, title: 'Community Outreach' },
     { src: carouselPic3, title: 'Community Gathering' },
     { src: carouselPic4, title: 'Health Initiative' },
     { src: carouselPic5, title: 'Education Support' },
@@ -93,6 +93,12 @@ const Home = () => {
     };
   }, [maxIndex, isPaused]);
 
+  useEffect(() => {
+    if (!isMdUp && isPaused) {
+      setIsPaused(false);
+    }
+  }, [isMdUp, isPaused]);
+
   return (
     <>
       <Helmet>
@@ -109,8 +115,16 @@ const Home = () => {
         <Container>
           <Box
             sx={{ position: 'relative' }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            onMouseEnter={() => {
+              if (isMdUp) {
+                setIsPaused(true);
+              }
+            }}
+            onMouseLeave={() => {
+              if (isMdUp) {
+                setIsPaused(false);
+              }
+            }}
           >
             <Box sx={{ overflow: 'hidden' }}>
               <Box
@@ -241,7 +255,7 @@ const Home = () => {
 
             <Typography
               variant="body2"
-              sx={{ textAlign: 'center', mt: 1.5, color: 'text.secondary' }}
+              sx={{ textAlign: 'center', mt: 1.5, color: 'text.secondary', display: { xs: 'none', md: 'block' } }}
             >
               Tip: Hover over the carousel to pause and take your time viewing each photo.
             </Typography>

@@ -16,31 +16,36 @@ import StorageIcon from '@mui/icons-material/Storage';
 import PublicIcon from '@mui/icons-material/Public';
 import baluTreasurer from '../assets/baluTreasurer.jpeg';
 import ammaChairman from '../assets/chairma_amma.jpeg';
+import kamala from '../assets/kamala.jpeg';
+import mama from '../assets/venkataRamana.jpeg';
+import Thata from '../assets/krishnaiah.jpeg';
 
 const About = () => {
   const teamMembers = [
     {
-      name: 'Founder & Chairman',
-      role: 'Leadership',
+      name: 'Krishnaiah Vallepu',
+      role: 'Chairman',
       initials: 'FC',
+      image: Thata,
       description: 'Visionary leader dedicated to community service',
     },
     {
-      name: 'Vice Chairman',
-      role: 'Operations',
+      name: 'Neeraja Tirupathi',
+      role: 'Vice Chairman',
       initials: 'VC',
       image: ammaChairman,
       description: 'Oversees day-to-day operations and initiatives',
     },
     {
-      name: 'Secretary',
-      role: 'Administration',
+      name: 'Venkata Ramana Vallepu',
+      role: 'Secretary',
       initials: 'SE',
+      image: mama,
       description: 'Manages administrative functions and records',
     },
     {
-      name: 'Treasurer',
-      role: 'Finance',
+      name: 'Balu Tirupathi',
+      role: 'Treasurer',
       initials: 'TR',
       image: baluTreasurer,
       description: 'Manages financial resources and transparency',
@@ -52,10 +57,10 @@ const About = () => {
       description: 'Coordinates volunteer activities and engagement',
     },
     {
-      name: 'Events Manager',
-      role: 'Events',
+      name: 'Kamala Vallepu',
+      role: 'Events Manager',
       initials: 'EM',
-      description: 'Plans and executes all trust events',
+      image: kamala,
     },
   ];
 

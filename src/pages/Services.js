@@ -8,12 +8,10 @@ import {
   Card,
   CardContent,
   CardActions,
-  Button,
 } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import SchoolIcon from '@mui/icons-material/School';
 import HotelIcon from '@mui/icons-material/Hotel';
-import EventIcon from '@mui/icons-material/Event';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
 const Services = () => {

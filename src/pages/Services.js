@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Box,
@@ -10,14 +10,35 @@ import {
   CardActions,
   Button,
 } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import SchoolIcon from '@mui/icons-material/School';
 import HotelIcon from '@mui/icons-material/Hotel';
 import EventIcon from '@mui/icons-material/Event';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
 const Services = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) {
+      return;
+    }
+
+    const targetId = location.hash.replace('#', '');
+    const scrollToTarget = () => {
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    const timeoutId = setTimeout(scrollToTarget, 0);
+    return () => clearTimeout(timeoutId);
+  }, [location.hash]);
+
   const mainServices = [
     {
+      id: 'uniform-distribution',
       icon: <SchoolIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
       title: 'Uniform Distribution',
       description: 'We provide quality school uniforms to economically disadvantaged children, ensuring they can attend school with pride.',
@@ -25,21 +46,15 @@ const Services = () => {
       benefits: ['Free uniform sets', 'Seasonal replacements', 'Quality assurance', 'Easy distribution process'],
     },
     {
+      id: 'pilgrim-accommodations',
       icon: <HotelIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
       title: 'Pilgrim Accommodations',
       description: 'Comfortable, affordable, and clean accommodation facilities for pilgrims visiting religious sites.',
       details: 'We operate modern guest houses and dormitories near major pilgrimage centers. Our facilities are designed to provide a comfortable stay with all essential amenities while maintaining affordability for all pilgrims.',
-      benefits: ['Budget-friendly rates', 'Clean facilities', 'Vegetarian meals', '24/7 security', 'Prayer spaces'],
+      benefits: ['Clean facilities', 'Vegetarian meals', '24/7 security', 'Prayer spaces'],
     },
     {
-      icon: <EventIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
-      title: 'Event Organization',
-      description: 'We organize religious festivals, community gatherings, and spiritual events.',
-      details: 'From large-scale festivals to intimate community gatherings, we handle all aspects of event planning and execution. Our events promote spiritual growth, cultural preservation, and community bonding.',
-      benefits: ['Professional planning', 'Experienced coordinators', 'Community participation', 'Cost-effective execution'],
-    },
-    
-    {
+      id: 'meal-distribution',
       icon: <LocalDiningIcon sx={{ fontSize: 56, color: '#2E5090' }} />,
       title: 'Meal & Food Distribution',
       description: 'Providing nutritious meals to those in need during festivals and year-round.',
@@ -84,7 +99,7 @@ const Services = () => {
         </Typography>
         <Grid container spacing={4} sx={{ mb: 8 }}>
           {mainServices.map((service, index) => (
-            <Grid item xs={12} md={6} key={index}>
+            <Grid item xs={12} md={6} key={index} id={service.id} sx={{ scrollMarginTop: 96 }}>
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardContent>
                   <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
@@ -113,9 +128,9 @@ const Services = () => {
                   </ul>
                 </CardContent>
                 <CardActions sx={{ mt: 'auto' }}>
-                  <Button color="primary" size="small">
+                  {/* <Button color="primary" size="small">
                     Learn More
-                  </Button>
+                  </Button> */}
                 </CardActions>
               </Card>
             </Grid>

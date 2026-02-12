@@ -20,6 +20,7 @@ import EventIcon from '@mui/icons-material/Event';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import carouselPic1 from '../assets/carouselPic1.jpeg';
 import carouselPic2 from '../assets/carouselPic2.jpeg';
 import carouselPic2Large from '../assets/carouselPic2.1.jpeg';
@@ -39,20 +40,21 @@ const Home = () => {
       icon: <SchoolIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
       title: 'Uniforms for Children',
       description: 'We provide school uniforms to underprivileged children, ensuring they can attend school with dignity and confidence.',
-      link: '/services',
+      link: '/services#uniform-distribution',
     },
     {
       icon: <HotelIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
       title: 'Pilgrim Accommodations',
       description: 'Comfortable and affordable accommodation facilities for pilgrims and visitors during religious journeys and festivals.',
-      link: '/services',
+      link: '/services#pilgrim-accommodations',
     },
     {
-      icon: <EventIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
-      title: 'Event Organization',
-      description: 'We organize religious and community events that bring people together and foster spiritual growth and cultural values.',
-      link: '/events',
+      icon: <LocalDiningIcon sx={{ fontSize: 48, color: '#2E5090' }} />,
+      title: 'Meal & Food Distribution',
+      description: 'Providing nutritious meals to those in need during festivals and year-round.',
+      link: '/services#meal-distribution',
     },
+
     
   ];
 
@@ -122,6 +124,21 @@ const Home = () => {
             }}
             onMouseLeave={() => {
               if (isMdUp) {
+                setIsPaused(false);
+              }
+            }}
+            onTouchStart={() => {
+              if (!isMdUp) {
+                setIsPaused(true);
+              }
+            }}
+            onTouchEnd={() => {
+              if (!isMdUp) {
+                setIsPaused(false);
+              }
+            }}
+            onTouchCancel={() => {
+              if (!isMdUp) {
                 setIsPaused(false);
               }
             }}

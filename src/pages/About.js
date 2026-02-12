@@ -55,6 +55,7 @@ const About = () => {
       role: 'Events Manager',
       initials: 'EM',
       image: kamala,
+      description: 'Plans and executes all trust events',
     },
     {
       name: 'Volunteer Coordinator',

@@ -174,6 +174,20 @@ const DonateModal = ({
       {/* donor form shown above tabs so user can input details first */}
       <DialogContent>
         <Box
+          sx={{
+            mb: 2,
+            p: 1.5,
+            borderRadius: 1,
+            background: "rgba(208, 151, 4, 0.12)",
+            border: "1px solid rgba(208, 151, 4, 0.4)",
+          }}
+        >
+          <Typography variant="body2" sx={{ color: "#7A5A00", fontWeight: 600 }}>
+            We are working on the payment gateway. You can continue to donate once
+            Razorpay is integrated.
+          </Typography>
+        </Box>
+        <Box
           component="form"
           noValidate
           onSubmit={(e) => {

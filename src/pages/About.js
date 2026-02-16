@@ -18,28 +18,21 @@ import baluTreasurer from '../assets/baluTreasurer.jpeg';
 import ammaChairman from '../assets/chairma_amma.jpeg';
 import kamala from '../assets/kamala.jpeg';
 import mama from '../assets/venkataRamana.jpeg';
-import Thata from '../assets/krishnaiah.jpeg';
+import Babai from '../assets/Narendra.jpeg';
 
 const About = () => {
   const teamMembers = [
     {
-      name: 'Krishnaiah Vallepu',
+      name: 'Neeraja Tirupathi',
       role: 'Chairman',
       initials: 'FC',
-      image: Thata,
-      description: 'Visionary leader dedicated to community service',
-    },
-    {
-      name: 'Neeraja Tirupathi',
-      role: 'Vice Chairman',
-      initials: 'VC',
       image: ammaChairman,
-      description: 'Oversees day-to-day operations and initiatives',
+      description: 'Visionary leader dedicated to community service',
     },
     {
       name: 'Venkata Ramana Vallepu',
       role: 'Secretary',
-      initials: 'SE',
+      initials: 'VC',
       image: mama,
       description: 'Manages administrative functions and records',
     },
@@ -50,6 +43,13 @@ const About = () => {
       image: baluTreasurer,
       description: 'Manages financial resources and transparency',
     },
+    {
+      name: 'Narendra Tirupathi',
+      role: 'Trustee',
+      initials: 'SE',
+      image: Babai,
+      description: 'Provides strategic guidance.',
+    },
      {
       name: 'Kamala Vallepu',
       role: 'Events Manager',
@@ -58,7 +58,7 @@ const About = () => {
       description: 'Plans and executes all trust events',
     },
     {
-      name: 'Volunteer Coordinator',
+      name: 'Volunteer',
       role: 'Community',
       initials: 'VC',
       description: 'Coordinates volunteer activities and engagement',

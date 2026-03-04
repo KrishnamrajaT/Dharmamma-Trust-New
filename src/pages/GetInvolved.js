@@ -18,7 +18,9 @@ import {
 } from '@mui/material';
 
 const amountOptions = [2000, 5000, 10000];
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL ||
+  'https://dharmamma-trust-new-nqra.vercel.app';
 
 const loadRazorpayScript = () =>
   new Promise((resolve, reject) => {

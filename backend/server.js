@@ -28,6 +28,21 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running', timestamp: new Date() });
 });
 
+// Root Route
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Dharmamma Charitable Trust Backend App',
+    message: 'Welcome to Dharmamma Charitable Trust Backend App',
+    status: 'running',
+    health: '/api/health',
+    endpoints: {
+      paymentCreateOrder: '/api/payment/create-order',
+      paymentVerify: '/api/payment/verify-payment',
+      contactSubmit: '/api/contact/submit',
+    },
+  });
+});
+
 // Routes
 app.use('/api/payment', paymentRoutes);
 app.use('/api/contact', contactRoutes);

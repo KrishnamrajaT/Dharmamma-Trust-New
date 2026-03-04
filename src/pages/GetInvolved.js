@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Box,
@@ -14,9 +14,42 @@ import {
   Checkbox,
   FormControlLabel,
   Link,
+  Alert,
 } from '@mui/material';
 
 const amountOptions = [2000, 5000, 10000];
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
+
+const loadRazorpayScript = () =>
+  new Promise((resolve, reject) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+
+    const existingScript = document.querySelector(
+      'script[src="https://checkout.razorpay.com/v1/checkout.js"]',
+    );
+
+    if (existingScript) {
+      existingScript.addEventListener('load', () => resolve(true), {
+        once: true,
+      });
+      existingScript.addEventListener(
+        'error',
+        () => reject(new Error('Failed to load Razorpay checkout script')),
+        { once: true },
+      );
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () => reject(new Error('Failed to load Razorpay checkout script'));
+    document.body.appendChild(script);
+  });
 
 const GetInvolved = () => {
   const [citizenshipTab, setCitizenshipTab] = useState(0);
@@ -24,6 +57,8 @@ const GetInvolved = () => {
   const [customAmount, setCustomAmount] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState({ type: '', message: '' });
   const [donor, setDonor] = useState({
     name: '',
     phone: '',
@@ -36,6 +71,18 @@ const GetInvolved = () => {
   const parsedCustomAmount = Number(customAmount);
   const donationAmount = isOtherSelected ? parsedCustomAmount : selectedAmount;
   const isAmountValid = Number.isFinite(donationAmount) && donationAmount > 0;
+
+  useEffect(() => {
+    if (!paymentStatus.message) {
+      return undefined;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setPaymentStatus({ type: '', message: '' });
+    }, 10000);
+
+    return () => clearTimeout(timeoutId);
+  }, [paymentStatus.message]);
 
   const handleAmountSelect = (value) => {
     setSelectedAmount(value);
@@ -90,9 +137,135 @@ const GetInvolved = () => {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleDonateClick = () => {
+  const handleDonateClick = async () => {
     if (!validate()) return;
-    // Payment integration can be wired here.
+    setLoading(true);
+    setPaymentStatus({ type: '', message: '' });
+
+    try {
+      const orderResponse = await fetch(`${API_BASE_URL}/api/payment/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: Math.round(donationAmount),
+          currency: 'INR',
+          receipt: `receipt_${Date.now()}`,
+          donorName: donor.name.trim(),
+          donorEmail: donor.email.trim(),
+          donorPhone: donor.phone.trim(),
+        }),
+      });
+
+      if (!orderResponse.ok) {
+        const errorPayload = await orderResponse.json().catch(() => ({}));
+        throw new Error(errorPayload.message || errorPayload.error || 'Failed to create order.');
+      }
+
+      const order = await orderResponse.json();
+      if (!order?.id) {
+        throw new Error('Invalid Razorpay order response.');
+      }
+
+      const keyId = process.env.REACT_APP_RAZORPAY_KEY_ID || order.key_id;
+      if (!keyId) {
+        throw new Error('Razorpay key is missing. Configure backend RAZORPAY_KEY_ID or frontend REACT_APP_RAZORPAY_KEY_ID.');
+      }
+
+      await loadRazorpayScript();
+
+      const options = {
+        key: keyId,
+        amount: order.amount,
+        currency: order.currency || 'INR',
+        name: 'Dharmamma Charitable Trust',
+        description: 'Donation',
+        order_id: order.id,
+        prefill: {
+          name: donor.name.trim(),
+          email: donor.email.trim(),
+          contact: donor.phone.trim(),
+        },
+        notes: {
+          donor_pan: donor.pan.trim().toUpperCase(),
+        },
+        theme: { color: '#2E5090' },
+        handler: async (response) => {
+          try {
+            const verifyResponse = await fetch(`${API_BASE_URL}/api/payment/verify-payment`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                donorName: donor.name.trim(),
+                donorEmail: donor.email.trim(),
+                donorPhone: donor.phone.trim(),
+                amount: Math.round(donationAmount),
+              }),
+            });
+
+            if (!verifyResponse.ok) {
+              const verifyError = await verifyResponse.json().catch(() => ({}));
+              throw new Error(verifyError.error || 'Payment verification failed.');
+            }
+
+            const verifyResult = await verifyResponse.json();
+            if (!verifyResult?.success) {
+              throw new Error('Payment processed, but verification failed.');
+            }
+
+            setPaymentStatus({
+              type: 'success',
+              message: 'Payment successful. Thank you for your donation!',
+            });
+            setCitizenshipTab(0);
+            setSelectedAmount(5000);
+            setCustomAmount('');
+            setAgreed(false);
+            setErrors({});
+            setDonor({
+              name: '',
+              phone: '',
+              email: '',
+              pan: '',
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } catch (verifyError) {
+            setPaymentStatus({
+              type: 'error',
+              message: verifyError.message || 'Payment completed, but verification failed.',
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } finally {
+            setLoading(false);
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setLoading(false);
+          },
+        },
+      };
+
+      const razorpayInstance = new window.Razorpay(options);
+      razorpayInstance.on('payment.failed', () => {
+        setPaymentStatus({
+          type: 'error',
+          message: 'Payment failed. Please try again.',
+        });
+        setLoading(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      razorpayInstance.open();
+    } catch (error) {
+      setPaymentStatus({
+        type: 'error',
+        message: error.message || 'Unable to initiate payment.',
+      });
+      setLoading(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -128,14 +301,20 @@ const GetInvolved = () => {
       </Box>
 
       <Container maxWidth="lg" sx={{ pb: 8 }}>
+        {paymentStatus.message && (
+          <Alert severity={paymentStatus.type === 'success' ? 'success' : 'error'} sx={{ mb: 3 }}>
+            {paymentStatus.message}
+          </Alert>
+        )}
         <Box
           sx={{
-            display: { xs: 'block', md: 'flex' },
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
             gap: { xs: 4, md: 6 },
             alignItems: 'flex-start',
           }}
         >
-          <Box sx={{ flex: 1, minWidth: 0 }}>
+          <Box sx={{ flex: 1, minWidth: 0, order: { xs: 2, md: 1 } }}>
             <Typography variant="h2" sx={{ mb: 2, color: '#D09704' }}>
               Why Donate?
             </Typography>
@@ -244,7 +423,7 @@ const GetInvolved = () => {
             </Box>
           </Box>
 
-          <Box sx={{ width: '100%', maxWidth: 520, minWidth: { md: 420 } }}>
+          <Box sx={{ width: '100%', maxWidth: 520, minWidth: { md: 420 }, order: { xs: 1, md: 2 } }}>
             <Card
               sx={{
                 border: '1px solid #D09704',
@@ -424,6 +603,7 @@ const GetInvolved = () => {
                 <Button
                   fullWidth
                   variant="contained"
+                  disabled={loading}
                   sx={{
                     mt: 3,
                     background: '#D09704',
@@ -432,7 +612,9 @@ const GetInvolved = () => {
                   }}
                   onClick={handleDonateClick}
                 >
-                  Continue to Payment ₹{isAmountValid ? donationAmount.toFixed(2) : '0.00'}
+                  {loading
+                    ? 'Opening Razorpay...'
+                    : `Continue to Payment ₹${isAmountValid ? donationAmount.toFixed(2) : '0.00'}`}
                 </Button>
               </Box>
             </Card>

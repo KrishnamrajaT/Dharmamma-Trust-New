@@ -8,12 +8,16 @@ const paymentRoutes = require('./routes/payment');
 const contactRoutes = require('./routes/contact');
 
 const app = express();
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 // Middleware
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json());

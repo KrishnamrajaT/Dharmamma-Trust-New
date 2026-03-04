@@ -13,6 +13,14 @@ const getRazorpayInstance = () => {
   });
 };
 
+const getRazorpaySecret = () => {
+  if (!process.env.RAZORPAY_KEY_SECRET) {
+    throw new Error('Razorpay secret not configured. Please add RAZORPAY_KEY_SECRET to .env file');
+  }
+
+  return process.env.RAZORPAY_KEY_SECRET;
+};
+
 // Create Order
 exports.createOrder = async (req, res) => {
   try {
@@ -42,13 +50,15 @@ exports.createOrder = async (req, res) => {
       id: order.id,
       amount: order.amount,
       currency: order.currency,
-      status: order.status
+      status: order.status,
+      key_id: process.env.RAZORPAY_KEY_ID
     });
   } catch (error) {
     console.error('Order creation error:', error);
+    const razorpayDescription = error?.error?.description;
     res.status(500).json({ 
       error: 'Failed to create order',
-      message: error.message 
+      message: razorpayDescription || error.message 
     });
   }
 };
@@ -69,7 +79,7 @@ exports.verifyPayment = async (req, res) => {
     // Create signature
     const sign = razorpay_order_id + '|' + razorpay_payment_id;
     const expectedSign = crypto
-      .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+      .createHmac('sha256', getRazorpaySecret())
       .update(sign)
       .digest('hex');
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -11,8 +11,43 @@ import {
   Tab,
   TextField,
   Grid,
+  Alert,
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "";
+
+const loadRazorpayScript = () =>
+  new Promise((resolve, reject) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+
+    const existingScript = document.querySelector(
+      'script[src="https://checkout.razorpay.com/v1/checkout.js"]',
+    );
+
+    if (existingScript) {
+      existingScript.addEventListener("load", () => resolve(true), {
+        once: true,
+      });
+      existingScript.addEventListener(
+        "error",
+        () => reject(new Error("Failed to load Razorpay checkout script")),
+        { once: true },
+      );
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    script.onload = () => resolve(true);
+    script.onerror = () =>
+      reject(new Error("Failed to load Razorpay checkout script"));
+    document.body.appendChild(script);
+  });
 
 const bankDetails = {
   accountName: "Dharmamma Charitable Trust",
@@ -41,6 +76,10 @@ const DonateModal = ({
   const [tabValue, setTabValue] = useState(0);
   const [loading, setLoading] = useState(false);
   const [copyStatus, setCopyStatus] = useState("idle");
+  const [paymentStatus, setPaymentStatus] = useState({
+    type: "",
+    message: "",
+  });
 
   const [form, setForm] = useState({
     name: initialName || "",
@@ -51,6 +90,18 @@ const DonateModal = ({
   });
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (!paymentStatus.message) {
+      return undefined;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setPaymentStatus({ type: "", message: "" });
+    }, 10000);
+
+    return () => clearTimeout(timeoutId);
+  }, [paymentStatus.message]);
 
   const validate = () => {
     const e = {};
@@ -78,10 +129,11 @@ const DonateModal = ({
   const handlePaymentClick = async () => {
     if (!validate()) return;
     setLoading(true);
+    setPaymentStatus({ type: "", message: "" });
 
     try {
       // Create order on backend (amount in rupees)
-      const resp = await fetch("/api/payment/create-order", {
+      const resp = await fetch(`${API_BASE_URL}/api/payment/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -94,15 +146,28 @@ const DonateModal = ({
         }),
       });
 
+      if (!resp.ok) {
+        const errorPayload = await resp.json().catch(() => ({}));
+        throw new Error(
+          errorPayload.message || errorPayload.error || "Order creation failed",
+        );
+      }
+
       const order = await resp.json();
       if (!order.id) throw new Error(order.message || "Order creation failed");
 
+      const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY_ID || order.key_id;
+      if (!razorpayKey) {
+        throw new Error(
+          "Razorpay key is missing. Configure backend RAZORPAY_KEY_ID or frontend REACT_APP_RAZORPAY_KEY_ID.",
+        );
+      }
+
+      await loadRazorpayScript();
+
       // build options
       const options = {
-        key:
-          process.env.REACT_APP_RAZORPAY_KEY_ID ||
-          window.RAZORPAY_KEY_ID ||
-          "rzp_test_XXXXXXXX",
+        key: razorpayKey,
         amount: Number(order.amount) || Math.round(Number(form.amount) * 100),
         currency: order.currency || "INR",
         name: "Dharmamma Charitable Trust",
@@ -117,7 +182,9 @@ const DonateModal = ({
         handler: async (response) => {
           try {
             // verify payment with backend
-            const verifyResp = await fetch("/api/payment/verify-payment", {
+            const verifyResp = await fetch(
+              `${API_BASE_URL}/api/payment/verify-payment`,
+              {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -129,39 +196,57 @@ const DonateModal = ({
                 donorPhone: form.phone || "",
                 amount: Math.round(Number(form.amount)),
               }),
-            });
+              },
+            );
+
+            if (!verifyResp.ok) {
+              const verifyError = await verifyResp.json().catch(() => ({}));
+              throw new Error(verifyError.error || "Payment verification failed");
+            }
+
             const verifyResult = await verifyResp.json();
             if (verifyResult && verifyResult.success) {
-              alert(
-                "Payment successful and verified. Thank you for your donation!",
-              );
+              setPaymentStatus({
+                type: "success",
+                message:
+                  "Payment successful and verified. Thank you for your donation!",
+              });
+              setForm({
+                name: "",
+                email: "",
+                pan: "",
+                amount: "",
+                phone: "",
+              });
+              setErrors({});
             } else {
-              alert(
-                "Payment processed but verification failed. We will contact you.",
-              );
+              setPaymentStatus({
+                type: "error",
+                message:
+                  "Payment processed but verification failed. We will contact you.",
+              });
             }
           } catch (err) {
             console.error("Verification error", err);
-            alert("Payment completed but verification failed.");
+            setPaymentStatus({
+              type: "error",
+              message: "Payment completed but verification failed.",
+            });
           } finally {
             setLoading(false);
-            onClose();
           }
         },
         modal: { ondismiss: () => setLoading(false) },
       };
 
-      // load script and open
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => {
-        const rzp = new window.Razorpay(options);
-        rzp.open();
-      };
-      document.body.appendChild(script);
+      const rzp = new window.Razorpay(options);
+      rzp.open();
     } catch (error) {
       console.error("Payment error:", error);
-      alert(error.message || "Failed to initiate payment");
+      setPaymentStatus({
+        type: "error",
+        message: error.message || "Failed to initiate payment",
+      });
       setLoading(false);
     }
   };
@@ -173,20 +258,14 @@ const DonateModal = ({
 
       {/* donor form shown above tabs so user can input details first */}
       <DialogContent>
-        <Box
-          sx={{
-            mb: 2,
-            p: 1.5,
-            borderRadius: 1,
-            background: "rgba(208, 151, 4, 0.12)",
-            border: "1px solid rgba(208, 151, 4, 0.4)",
-          }}
-        >
-          <Typography variant="body2" sx={{ color: "#7A5A00", fontWeight: 600 }}>
-            We are working on the payment gateway. You can continue to donate once
-            Razorpay is integrated.
-          </Typography>
-        </Box>
+        {paymentStatus.message && (
+          <Alert
+            severity={paymentStatus.type === "success" ? "success" : "error"}
+            sx={{ mb: 2 }}
+          >
+            {paymentStatus.message}
+          </Alert>
+        )}
         <Box
           component="form"
           noValidate

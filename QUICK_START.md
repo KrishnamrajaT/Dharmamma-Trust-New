@@ -232,8 +232,11 @@ const response = await fetch('/api/contact', {
 - Or use traditional backend API
 
 **For Donations:**
-- Integrate Stripe, PayPal, or Razorpay
-- Add payment processing logic
+- Razorpay integration is already available in the donation modal
+- Configure keys before use:
+  - Frontend `.env`: `REACT_APP_RAZORPAY_KEY_ID=your_live_or_test_key_id`
+  - Frontend `.env`: `REACT_APP_API_BASE_URL=http://localhost:5000` (for separate local backend)
+  - Backend `backend/.env`: `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`
 
 ---
 

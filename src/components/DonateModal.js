@@ -251,11 +251,31 @@ const DonateModal = ({
       const order = await resp.json();
       if (!order.id) throw new Error(order.message || "Order creation failed");
 
-      const razorpayKey = process.env.REACT_APP_RAZORPAY_KEY_ID || order.key_id;
+      const frontendRazorpayKey = (process.env.REACT_APP_RAZORPAY_KEY_ID || "").trim();
+      const razorpayKey = order.key_id || frontendRazorpayKey;
       if (!razorpayKey) {
         throw new Error(
           "Razorpay key is missing. Configure backend RAZORPAY_KEY_ID or frontend REACT_APP_RAZORPAY_KEY_ID.",
         );
+      }
+
+      if (
+        frontendRazorpayKey &&
+        order.key_id &&
+        frontendRazorpayKey !== order.key_id
+      ) {
+        console.warn(
+          "Frontend and backend Razorpay key mismatch. Using backend key_id from create-order response.",
+          {
+            frontendKeyId: frontendRazorpayKey,
+            backendKeyId: order.key_id,
+          },
+        );
+        setPaymentStatus({
+          type: "error",
+          message:
+            "Checkout key mismatch detected and auto-corrected. Please update REACT_APP_RAZORPAY_KEY_ID to match backend key.",
+        });
       }
 
       await loadRazorpayScript();

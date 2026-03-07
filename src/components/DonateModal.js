@@ -49,6 +49,8 @@ const getApiBaseUrlWarning = () => {
   return "";
 };
 
+const RAZORPAY_SCRIPT_URL = "https://checkout.razorpay.com/v1/checkout.js";
+
 const loadRazorpayScript = () =>
   new Promise((resolve, reject) => {
     if (window.Razorpay) {
@@ -56,29 +58,52 @@ const loadRazorpayScript = () =>
       return;
     }
 
-    const existingScript = document.querySelector(
-      'script[src="https://checkout.razorpay.com/v1/checkout.js"]',
-    );
-
-    if (existingScript) {
-      existingScript.addEventListener("load", () => resolve(true), {
-        once: true,
-      });
-      existingScript.addEventListener(
-        "error",
-        () => reject(new Error("Failed to load Razorpay checkout script")),
-        { once: true },
+    const injectScript = (retryCount = 0) => {
+      const existingScript = document.querySelector(
+        `script[src="${RAZORPAY_SCRIPT_URL}"]`,
       );
-      return;
-    }
 
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-    script.onload = () => resolve(true);
-    script.onerror = () =>
-      reject(new Error("Failed to load Razorpay checkout script"));
-    document.body.appendChild(script);
+      if (existingScript && window.Razorpay) {
+        resolve(true);
+        return;
+      }
+
+      if (existingScript && retryCount > 0) {
+        existingScript.remove();
+      }
+
+      const script = document.createElement("script");
+      script.src = RAZORPAY_SCRIPT_URL;
+      script.async = true;
+      script.onload = () => {
+        if (window.Razorpay) {
+          resolve(true);
+          return;
+        }
+
+        reject(
+          new Error(
+            "Razorpay script loaded, but Checkout is unavailable. Please disable blockers and retry.",
+          ),
+        );
+      };
+      script.onerror = () => {
+        if (retryCount < 1) {
+          injectScript(retryCount + 1);
+          return;
+        }
+
+        reject(
+          new Error(
+            "Failed to load Razorpay checkout script. Check browser blockers/network and retry.",
+          ),
+        );
+      };
+
+      document.body.appendChild(script);
+    };
+
+    injectScript();
   });
 
 const bankDetails = {

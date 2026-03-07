@@ -20,8 +20,7 @@ const API_BASE_URL =
   RAW_API_BASE_URL ||
   "https://dharmamma-trust-new-nqra.vercel.app";
 
-const DEFAULT_REGISTERED_WEBSITE_URL =
-  "https://dharmamma-trust-new-nqra.vercel.app";
+const DEFAULT_REGISTERED_WEBSITE_URL = "https://dharmammacharitabletrust.com";
 const RAW_REGISTERED_WEBSITE_URL =
   (process.env.REACT_APP_RAZORPAY_REGISTERED_WEBSITE_URL || "").trim();
 const REGISTERED_WEBSITE_URL =
@@ -32,6 +31,28 @@ const getSafeOrigin = (url) => {
     return new URL(url).origin.toLowerCase();
   } catch (_error) {
     return "";
+  }
+};
+
+const getOriginVariants = (url) => {
+  try {
+    const parsed = new URL(url);
+    const variants = new Set([parsed.origin.toLowerCase()]);
+    const host = parsed.hostname.toLowerCase();
+
+    if (host.startsWith("www.")) {
+      variants.add(
+        `${parsed.protocol}//${host.replace(/^www\./, "")}${parsed.port ? `:${parsed.port}` : ""}`,
+      );
+    } else {
+      variants.add(
+        `${parsed.protocol}//www.${host}${parsed.port ? `:${parsed.port}` : ""}`,
+      );
+    }
+
+    return variants;
+  } catch (_error) {
+    return new Set();
   }
 };
 
@@ -57,6 +78,17 @@ const getRegisteredWebsiteOrigin = () => {
     getSafeOrigin(RAW_REGISTERED_WEBSITE_URL) ||
     getSafeOrigin(DEFAULT_REGISTERED_WEBSITE_URL)
   );
+};
+
+const getAllowedRegisteredOrigins = () => {
+  const sourceUrl = RAW_REGISTERED_WEBSITE_URL || DEFAULT_REGISTERED_WEBSITE_URL;
+  const variants = getOriginVariants(sourceUrl);
+
+  if (variants.size === 0) {
+    variants.add(getSafeOrigin(DEFAULT_REGISTERED_WEBSITE_URL));
+  }
+
+  return variants;
 };
 
 const getRegisteredWebsiteWarning = () => {
@@ -211,9 +243,10 @@ const DonateModal = ({
     if (!validate()) return;
 
     const registeredOrigin = getRegisteredWebsiteOrigin();
+    const allowedRegisteredOrigins = getAllowedRegisteredOrigins();
     const currentOrigin = window.location.origin.toLowerCase();
 
-    if (registeredOrigin && currentOrigin !== registeredOrigin) {
+    if (registeredOrigin && !allowedRegisteredOrigins.has(currentOrigin)) {
       const redirectUrl = `${registeredOrigin}${window.location.pathname}${window.location.search}${window.location.hash}`;
       setPaymentStatus({
         type: "error",

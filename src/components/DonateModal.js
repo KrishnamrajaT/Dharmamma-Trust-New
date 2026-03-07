@@ -15,9 +15,39 @@ import {
 } from "@mui/material";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
+const RAW_API_BASE_URL = (process.env.REACT_APP_API_BASE_URL || "").trim();
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL ||
+  RAW_API_BASE_URL ||
   "https://dharmamma-trust-new-nqra.vercel.app";
+
+const REGISTERED_WEBSITE_URL =
+  process.env.REACT_APP_RAZORPAY_REGISTERED_WEBSITE_URL ||
+  "https://dharmamma-trust-new-nqra.vercel.app";
+
+const getSafeOrigin = (url) => {
+  try {
+    return new URL(url).origin.toLowerCase();
+  } catch (_error) {
+    return "";
+  }
+};
+
+const getApiBaseUrlWarning = () => {
+  if (!RAW_API_BASE_URL) {
+    return "Payment API is using fallback URL. Set REACT_APP_API_BASE_URL in Vercel to your backend domain.";
+  }
+
+  try {
+    const parsed = new URL(RAW_API_BASE_URL);
+    if (parsed.pathname && parsed.pathname !== "/") {
+      return "REACT_APP_API_BASE_URL should be backend domain only (without /api or any path).";
+    }
+  } catch (_error) {
+    return "REACT_APP_API_BASE_URL is invalid. Use a full URL like https://your-backend.vercel.app";
+  }
+
+  return "";
+};
 
 const loadRazorpayScript = () =>
   new Promise((resolve, reject) => {
@@ -92,6 +122,7 @@ const DonateModal = ({
   });
 
   const [errors, setErrors] = useState({});
+  const apiBaseUrlWarning = getApiBaseUrlWarning();
 
   useEffect(() => {
     if (!paymentStatus.message) {
@@ -130,6 +161,20 @@ const DonateModal = ({
 
   const handlePaymentClick = async () => {
     if (!validate()) return;
+
+    const registeredOrigin = getSafeOrigin(REGISTERED_WEBSITE_URL);
+    const currentOrigin = window.location.origin.toLowerCase();
+
+    if (registeredOrigin && currentOrigin !== registeredOrigin) {
+      const redirectUrl = `${registeredOrigin}${window.location.pathname}${window.location.search}${window.location.hash}`;
+      setPaymentStatus({
+        type: "error",
+        message: `Payments are enabled only on ${registeredOrigin}. Redirecting...`,
+      });
+      window.location.replace(redirectUrl);
+      return;
+    }
+
     setLoading(true);
     setPaymentStatus({ type: "", message: "" });
 
@@ -260,6 +305,11 @@ const DonateModal = ({
 
       {/* donor form shown above tabs so user can input details first */}
       <DialogContent>
+        {apiBaseUrlWarning && (
+          <Alert severity="warning" sx={{ mb: 2 }}>
+            {apiBaseUrlWarning}
+          </Alert>
+        )}
         {paymentStatus.message && (
           <Alert
             severity={paymentStatus.type === "success" ? "success" : "error"}

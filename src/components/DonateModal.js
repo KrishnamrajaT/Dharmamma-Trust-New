@@ -20,9 +20,12 @@ const API_BASE_URL =
   RAW_API_BASE_URL ||
   "https://dharmamma-trust-new-nqra.vercel.app";
 
-const REGISTERED_WEBSITE_URL =
-  process.env.REACT_APP_RAZORPAY_REGISTERED_WEBSITE_URL ||
+const DEFAULT_REGISTERED_WEBSITE_URL =
   "https://dharmamma-trust-new-nqra.vercel.app";
+const RAW_REGISTERED_WEBSITE_URL =
+  (process.env.REACT_APP_RAZORPAY_REGISTERED_WEBSITE_URL || "").trim();
+const REGISTERED_WEBSITE_URL =
+  RAW_REGISTERED_WEBSITE_URL || DEFAULT_REGISTERED_WEBSITE_URL;
 
 const getSafeOrigin = (url) => {
   try {
@@ -44,6 +47,25 @@ const getApiBaseUrlWarning = () => {
     }
   } catch (_error) {
     return "REACT_APP_API_BASE_URL is invalid. Use a full URL like https://your-backend.vercel.app";
+  }
+
+  return "";
+};
+
+const getRegisteredWebsiteOrigin = () => {
+  return (
+    getSafeOrigin(RAW_REGISTERED_WEBSITE_URL) ||
+    getSafeOrigin(DEFAULT_REGISTERED_WEBSITE_URL)
+  );
+};
+
+const getRegisteredWebsiteWarning = () => {
+  if (!RAW_REGISTERED_WEBSITE_URL) {
+    return "Using default Razorpay registered website URL. Set REACT_APP_RAZORPAY_REGISTERED_WEBSITE_URL in Vercel for clarity.";
+  }
+
+  if (!getSafeOrigin(RAW_REGISTERED_WEBSITE_URL)) {
+    return "REACT_APP_RAZORPAY_REGISTERED_WEBSITE_URL is invalid. Use only a full URL like https://your-frontend.vercel.app";
   }
 
   return "";
@@ -148,6 +170,7 @@ const DonateModal = ({
 
   const [errors, setErrors] = useState({});
   const apiBaseUrlWarning = getApiBaseUrlWarning();
+  const registeredWebsiteWarning = getRegisteredWebsiteWarning();
 
   useEffect(() => {
     if (!paymentStatus.message) {
@@ -187,7 +210,7 @@ const DonateModal = ({
   const handlePaymentClick = async () => {
     if (!validate()) return;
 
-    const registeredOrigin = getSafeOrigin(REGISTERED_WEBSITE_URL);
+    const registeredOrigin = getRegisteredWebsiteOrigin();
     const currentOrigin = window.location.origin.toLowerCase();
 
     if (registeredOrigin && currentOrigin !== registeredOrigin) {
@@ -330,6 +353,11 @@ const DonateModal = ({
 
       {/* donor form shown above tabs so user can input details first */}
       <DialogContent>
+        {registeredWebsiteWarning && (
+          <Alert severity="warning" sx={{ mb: 2 }}>
+            {registeredWebsiteWarning}
+          </Alert>
+        )}
         {apiBaseUrlWarning && (
           <Alert severity="warning" sx={{ mb: 2 }}>
             {apiBaseUrlWarning}
